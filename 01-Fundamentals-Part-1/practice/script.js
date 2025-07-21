@@ -61,3 +61,7 @@ const firstName = "Muhtasim";
 const middleName = "Billah";
 const lastName = "Ratul";
 console.log(firstName + " " + middleName + " " + lastName);
+/* 
+    operator precedence follow left to right describe here
+    url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_precedence
+ */
