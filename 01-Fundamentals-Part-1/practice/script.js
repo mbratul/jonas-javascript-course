@@ -65,3 +65,8 @@ console.log(firstName + " " + middleName + " " + lastName);
     operator precedence follow left to right describe here
     url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_precedence
  */
+
+/* Template Literals */
+console.log(`template literal ${firstName} test here and 
+    it can also work for multiple line
+    `);
