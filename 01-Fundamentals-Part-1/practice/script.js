@@ -70,3 +70,6 @@ console.log(firstName + " " + middleName + " " + lastName);
 console.log(`template literal ${firstName} test here and 
     it can also work for multiple line
     `);
+/* Convert Data Type */
+const inputYear = "1991";
+console.log(Number(inputYear) + 18);
