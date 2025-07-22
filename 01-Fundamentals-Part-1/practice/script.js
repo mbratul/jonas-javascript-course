@@ -73,3 +73,9 @@ console.log(`template literal ${firstName} test here and
 /* Convert Data Type */
 const inputYear = "1991";
 console.log(Number(inputYear) + 18);
+
+// 5 falsy values and they are : undefine, " ", 0, null, NaN
+console.log(Boolean(0)); //false
+console.log(Boolean(undefined)); //false
+console.log(Boolean("Ratul")); //true
+console.log(Boolean({})); //true
