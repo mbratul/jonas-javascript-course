@@ -106,3 +106,34 @@ if (hasDriverLicense && hasGoodVision && !isTired) {
 } else {
   console.log("someone else can drive");
 }
+
+// switch case statement
+
+const day = "sunday";
+switch (day) {
+  case "monday":
+    console.log("monday prepare for learning");
+    break;
+  case "tuesday":
+    console.log("tuesday start coding practice");
+    break;
+  case "wednesday":
+  case "thursday":
+    console.log("wednesday and thursday write code example");
+    break;
+  case "friday":
+    console.log("friday practice code again");
+    break;
+  case "saturday":
+  case "sunday":
+    console.log("saturday and sunday weekend break");
+    break;
+  default:
+    console.log("not a valid weekday");
+}
+
+// conditional ternary operator
+const age = 23;
+age >= 18 ? console.log(`i am adult`) : console.log(`i am child`);
+
+console.log(`i am ${age >= 18 ? "adult" : "child"}`);
