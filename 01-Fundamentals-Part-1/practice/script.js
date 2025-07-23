@@ -79,3 +79,30 @@ console.log(Boolean(0)); //false
 console.log(Boolean(undefined)); //false
 console.log(Boolean("Ratul")); //true
 console.log(Boolean({})); //true
+
+// double equal == is loosely type
+// tripple equal === is strict type operator
+
+const hasDriverLicense = true; // A
+//const hasGoodVision = false; // B
+const hasGoodVision = true; // B
+console.log(hasDriverLicense && hasGoodVision); // result
+console.log(hasDriverLicense || hasGoodVision); // result
+console.log(!hasDriverLicense);
+
+//const shouldDrive = hasDriverLicense && hasGoodVision;
+/* if (hasDriverLicense && hasGoodVision) {
+  console.log("sara can drive");
+} else {
+  console.log("someone else can drive");
+} */
+
+isTired = true;
+console.log(hasDriverLicense || hasGoodVision || isTired);
+console.log(hasDriverLicense && hasGoodVision && isTired);
+
+if (hasDriverLicense && hasGoodVision && !isTired) {
+  console.log("sara can drive");
+} else {
+  console.log("someone else can drive");
+}
