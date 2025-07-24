@@ -1,7 +1,10 @@
 "use strict";
 
 // function
-/* Functions in JavaScript are reusable blocks of code designed to perform specific tasks. They allow you to organize, reuse, and modularize code. It can take inputs, perform actions, and return outputs. */
+
+/* Functions in JavaScript are reusable blocks of code designed to perform specific tasks. They allow you to organize, reuse, and modularize code. It can take inputs, perform actions, and return outputs. 
+url : https://www.geeksforgeeks.org/javascript/functions-in-javascript/
+*/
 /* Key Characteristics of Functions
 - Parameters vs Arguments: Parameters are placeholders for function and arguments are actual value for those placeholders.
 - Return Values: Functions can return a value using the return keyword.
