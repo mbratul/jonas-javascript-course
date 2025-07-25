@@ -49,3 +49,48 @@ console.log(age1);
 const age2 = function (birthYear) {
   return 2025 - birthYear;
 };
+
+// Arrow Function
+//url : https://www.geeksforgeeks.org/javascript/arrow-functions-in-javascript/
+
+const yearsUntilretirement = (birthYear, firstname) => {
+  const age3 = 2037 - birthYear;
+  const retirementAge = 60 - age3;
+  return `${firstname} retires in ${retirementAge} years`;
+};
+console.log(yearsUntilretirement(1991, "jonas"));
+console.log(yearsUntilretirement(1981, "bob"));
+
+// function calling other functions
+function cutPieces(fruit) {
+  return fruit * 4;
+}
+function fruitProcessor1(apples, oranges) {
+  const applePieces = cutPieces(apples);
+  const orangePieces = cutPieces(oranges);
+  console.log(apples, oranges);
+  const juice = `Juice with ${applePieces} slices of ${apples} apples and ${orangePieces} slices of ${oranges} oranges`;
+  return juice;
+}
+console.log(fruitProcessor1(4, 5));
+
+///////////////////////////////////////
+// Reviewing Functions
+const calcAge = function (birthYear) {
+  return 2025 - birthYear;
+};
+
+const yearsUntilRetirement = function (birthYear, firstName) {
+  const age = calcAge(birthYear);
+  const retirement = 65 - age;
+  if (retirement > 0) {
+    console.log(`${firstName} retires in ${retirement} years`);
+    return retirement;
+  } else {
+    console.log(`${firstName} has already retired`);
+    return -1;
+  }
+};
+
+console.log(yearsUntilRetirement(1991, "Jonas"));
+console.log(yearsUntilRetirement(1950, "Mike"));
