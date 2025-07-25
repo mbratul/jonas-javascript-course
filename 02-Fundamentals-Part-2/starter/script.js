@@ -34,3 +34,18 @@ console.log(fruitProcessor(5, 10));
 
 const fruitJuice = fruitProcessor(2, 4); // store the value of a function
 console.log(fruitJuice);
+
+// Calculate age
+
+// function declaration
+function calculateAge1(birthYear) {
+  return 2025 - birthYear;
+}
+const age1 = calculateAge1(1985);
+console.log(age1);
+
+// function expression
+// expression produced values
+const age2 = function (birthYear) {
+  return 2025 - birthYear;
+};
