@@ -118,6 +118,30 @@ const calcAge1 = function (birthYeah) {
 const years1 = [1991, 1955, 1967, 2015, 2007];
 const ages = [
   calcAge(years1[0]),
-  calcAge(years1[2], calcAge1(years1[years1.length - 1])),
+  calcAge(years1[2]),
+  calcAge1(years1[years1.length - 1]),
 ];
 console.log(ages);
+
+// some useful array method
+const friends1 = ["Michel", "Steven", "Peter"];
+// add element
+friends1.push("jay"); // add an element last of an array
+console.log(friends1);
+friends1.unshift("john"); // add an element first of an array
+console.log(friends1);
+
+// remove element
+friends1.pop(); //remove last elements of an array
+console.log(friends1);
+friends1.shift(); //remove first elements of an array
+console.log(friends1);
+
+console.log(friends1.indexOf("Steven")); //index of an element in an array
+console.log(friends1.indexOf("Bob")); //show -1 because element is not in an array
+console.log(friends1.includes("Steven")); //check true or false an element in an array
+console.log(friends1.includes("Bob")); //check true or false element is not in an array
+
+if (friends1.includes("Steven")) {
+  console.log(`you have a friend name Steven`);
+}
