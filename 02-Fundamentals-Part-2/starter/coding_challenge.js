@@ -111,11 +111,11 @@ if (mark.calcBmi() >= john.calcBmi()) {
       john.fullName
     }'s (${john.calcBmi()})!`
   );
-} else if (mark.calcBmi() <= john.calcBmi()) {
+} else if (john.calcBmi() >= mark.calcBmi()) {
   console.log(
-    `${mark.fullName}'s BMI (${mark.calcBmi()}) is lower than ${
-      john.fullName
-    }'s (${john.calcBmi()})!`
+    `${john.fullName}'s BMI (${john.calcBmi()}) is higher than ${
+      mark.fullName
+    }'s (${mark.calcBmi()})!`
   );
 } else {
   console.log("Both BMI are same");
