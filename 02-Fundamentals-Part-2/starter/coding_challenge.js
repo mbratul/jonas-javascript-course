@@ -103,7 +103,7 @@ const john = {
     return (this.bmi = this.mass / (this.height * this.height));
   },
 };
-console.log(mark.bmi);
+console.log(mark.calcBmi());
 console.log(john.calcBmi());
 if (mark.calcBmi() >= john.calcBmi()) {
   console.log(
