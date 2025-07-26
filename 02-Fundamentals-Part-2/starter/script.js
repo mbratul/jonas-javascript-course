@@ -201,3 +201,36 @@ console.log(
 // Challenge
 // "Ratul is a 46-year old teacher, and he has a driver's license"
 console.log(ratul.getSummary1());
+
+///////////////////////////////////////
+// Iteration: The for Loop
+
+// for loop keeps running while condition is TRUE
+for (let rep = 1; rep <= 10; rep++) {
+  console.log(`Lifting weights repetition ${rep} 🏋️‍♀️`);
+}
+
+// Looping Arrays, Breaking and Continuing
+const jonasArray = [
+  "Jonas",
+  "Schmedtmann",
+  2037 - 1991,
+  "teacher",
+  ["Michael", "Peter", "Steven"],
+  true,
+];
+const types = [];
+for (let i = 0; i < jonasArray.length; i++) {
+  console.log(jonasArray[i], typeof jonasArray[i]);
+  types[i] = typeof jonasArray[i];
+  //types.push(typeof jonasArray[i]);
+}
+console.log(types);
+
+const yearsArray = [1994, 1985, 1976, 2002, 2022];
+const agesArray = [];
+
+for (let i = 0; i < yearsArray.length; i++) {
+  agesArray.push(2025 - yearsArray[i]);
+}
+console.log(agesArray);
