@@ -145,3 +145,59 @@ console.log(friends1.includes("Bob")); //check true or false element is not in a
 if (friends1.includes("Steven")) {
   console.log(`you have a friend name Steven`);
 }
+/* 
+Objects in Javascript
+
+An object in JavaScript is a data structure used to store related data collections. It stores data as key-value pairs, where each key is a unique identifier for the associated value. Objects are dynamic, which means the properties can be added, modified, or deleted at runtime.
+
+There are two primary ways to create an object in JavaScript: Object Literal and Object Constructor. 
+url: https://www.geeksforgeeks.org/javascript/objects-in-javascript/
+*/
+
+const ratul = {
+  firstName: "Muhtasim",
+  middleName: "Billah",
+  lastName: "Ratul",
+  job: "Web Developer",
+  birthYear: 1985,
+  friends: ["porosh", "sabbir", "moon"],
+  hasDriverLicense: true,
+  calcAge: function () {
+    return 2025 - this.birthYear;
+  },
+  getSummary1: function () {
+    return `${this.lastName} is a ${this.calcAge()}-year old ${
+      this.job
+    }, and he has ${this.hasDriverLicense ? "a" : "no"} driver's license`;
+  },
+};
+console.log(ratul);
+console.log(ratul.calcAge());
+// Dot vs. Bracket Notation
+console.log(`dot notation to display data from object ${ratul.firstName}`); // dot notation to display data from object
+console.log(
+  `bracket notation to display data from object ${ratul["firstName"]}`
+); // bracket notation to display data from object
+
+const nameKey = "Name";
+console.log(ratul["first" + nameKey]);
+console.log(ratul["middle" + nameKey]);
+console.log(ratul["last" + nameKey]);
+
+/* const interestedIn = prompt(
+  "what do you want to know about ratul, name, job, friends"
+);
+console.log(ratul[interestedIn]); */
+ratul.location = "Dhaka";
+ratul["twitter"] = "@mbratul";
+
+// Challenge
+// "Ratul has 3 friends, and his best friend is called porosh"
+console.log(
+  `${ratul.lastName} has ${ratul.friends.length} friends, and his best friend name is ${ratul.friends[0]}`
+);
+// console.log(Date());
+
+// Challenge
+// "Ratul is a 46-year old teacher, and he has a driver's license"
+console.log(ratul.getSummary1());
