@@ -249,3 +249,19 @@ for (let i = 0; i < jonas.length; i++) {
 
   console.log(jonas[i], typeof jonas[i]);
 }
+///////////////////////////////////////
+// Looping Backwards
+// 0, 1, ..., 4
+// 4, 3, ..., 0
+console.log("--- Looping Backwards ---");
+for (let i = jonasArray.length - 1; i >= 0; i--) {
+  console.log(i, jonasArray[i]);
+}
+//  Loops in Loops
+console.log("--- Loops in Loops ---");
+for (let exercise = 1; exercise <= 3; exercise++) {
+  console.log(`------ Starting Exercise ---- ${exercise}`);
+  for (let repetition = 1; repetition <= 5; repetition++) {
+    console.log(`Exercise ${exercise} Lifting weight repetition ${repetition}`);
+  }
+}
