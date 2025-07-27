@@ -253,15 +253,40 @@ for (let i = 0; i < jonas.length; i++) {
 // Looping Backwards
 // 0, 1, ..., 4
 // 4, 3, ..., 0
-console.log("--- Looping Backwards ---");
-for (let i = jonasArray.length - 1; i >= 0; i--) {
-  console.log(i, jonasArray[i]);
+{
+  console.log("--- Looping Backwards ---");
+  for (let i = jonasArray.length - 1; i >= 0; i--) {
+    console.log(i, jonasArray[i]);
+  }
 }
 //  Loops in Loops
-console.log("--- Loops in Loops ---");
-for (let exercise = 1; exercise <= 3; exercise++) {
-  console.log(`------ Starting Exercise ---- ${exercise}`);
-  for (let repetition = 1; repetition <= 5; repetition++) {
-    console.log(`Exercise ${exercise} Lifting weight repetition ${repetition}`);
+{
+  console.log("--- Loops in Loops ---");
+  for (let exercise = 1; exercise <= 3; exercise++) {
+    console.log(`------ Starting Exercise ---- ${exercise}`);
+    for (let repetition = 1; repetition <= 3; repetition++) {
+      console.log(
+        `Exercise ${exercise} Lifting weight repetition ${repetition}`
+      );
+    }
+  }
+}
+
+///////////////////////////////////////
+// The while Loop
+{
+  console.log("--- While Loops ---");
+  let repetition = 1;
+  while (repetition <= 3) {
+    console.log(`Exercise Lifting weight repetition ${repetition}`);
+    repetition++;
+  }
+  console.log("---Random Number While Loops ---");
+  let dice = Math.trunc(Math.random() * 6) + 1;
+  //console.log(dice);
+  while (dice !== 6) {
+    console.log(`your rool value is ${dice}`);
+    dice = Math.trunc(Math.random() * 6) + 1;
+    if (dice === 6) console.log(`loop is about to end`);
   }
 }
