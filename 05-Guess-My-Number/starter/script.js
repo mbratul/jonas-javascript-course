@@ -15,7 +15,12 @@ let highScore = 0;
 //document.querySelector(".number").textContent = secretNumber;
 
 //message element variable
-const messageElem = document.querySelector(".message");
+//const messageElem = document.querySelector(".message");
+
+// refactoring codebase using function
+const displayMesage = function (message) {
+  document.querySelector(".message").textContent = message;
+};
 // check button event listener
 const checkBtnElem = document.querySelector(".check");
 checkBtnElem.addEventListener("click", function () {
@@ -23,10 +28,12 @@ checkBtnElem.addEventListener("click", function () {
   console.log(guess, typeof guess);
   // When there is no input
   if (!guess) {
-    console.log((messageElem.textContent = "No Number"));
+    //messageElem.textContent = "No Number";
+    displayMesage("No Number");
   } // when player wins
   else if (guess === secretNumber) {
-    messageElem.textContent = "Correct Number";
+    //messageElem.textContent = "Correct Number";
+    displayMesage("Correct Number");
     document.querySelector(".number").textContent = secretNumber;
     document.querySelector("body").style.backgroundColor = "#60b347";
     document.querySelector(".number").style.width = "30rem";
@@ -35,8 +42,21 @@ checkBtnElem.addEventListener("click", function () {
       highScore = score;
       document.querySelector(".highscore").textContent = highScore;
     }
-  } //when gues is too high
-  else if (guess > secretNumber) {
+  } // when guess is wrong
+  else if (guess !== secretNumber) {
+    if (score > 1) {
+      //messageElem.textContent = guess > secretNumber ? "Too High" : "Too Low";
+      displayMesage(guess > secretNumber ? "Too High" : "Too Low");
+      score--;
+      document.querySelector(".score").textContent = score;
+    } else {
+      //messageElem.textContent = "You Lost the Game";
+      displayMesage("You Lost the Game");
+      document.querySelector(".score").textContent = 0;
+    }
+  }
+  //when gues is too high
+  /* else if (guess > secretNumber) {
     if (score > 1) {
       messageElem.textContent = "Too High";
       score--;
@@ -55,7 +75,7 @@ checkBtnElem.addEventListener("click", function () {
       messageElem.textContent = "You Lost the Game";
       document.querySelector(".score").textContent = 0;
     }
-  }
+  } */
 });
 
 ///////////////////////////////////////
@@ -75,7 +95,8 @@ GOOD LUCK 😀
 document.querySelector(".again").addEventListener("click", function () {
   score = 20;
   Math.trunc(Math.random() * 20) + 1;
-  messageElem.textContent = "Start guessing...";
+  //messageElem.textContent = "Start guessing...";
+  displayMesage("Start guessing...");
   document.querySelector(".score").textContent = score;
   document.querySelector(".number").textContent = "?";
   document.querySelector(".guess").value = "";
