@@ -140,7 +140,7 @@ jonas2.greet();
 jonas2.calcAge();
 
 // arguments keyword
-const addExpr = function (a, b) {
+/* const addExpr = function (a, b) {
   console.log(arguments);
   return a + b;
 };
@@ -151,4 +151,58 @@ var addArrow1 = (a, b) => {
   console.log(arguments);
   return a + b;
 };
-addArrow1(2, 5, 8);
+addArrow1(2, 5, 8); */
+///////////////////////////////////////
+// Object References in Practice (Shallow vs. Deep Copies)
+console.log(
+  `-------Object References in Practice (Shallow vs. Deep Copies)------`
+);
+const jessica1 = {
+  firstName: 'Jessica',
+  lastName: 'William',
+  age: 27,
+};
+//Another way of change an object create a function
+function marryPerson(originalPerson, newLastName) {
+  originalPerson.lastName = newLastName;
+
+  //{if i write a wrong key name (lastName write lastname) it can create another property(key:value) in the object jessical}
+  //originalPerson.lastname = newLastName;
+
+  return originalPerson; // return is the key property in function to display the output
+}
+/* const marriedJessica = jessica;
+marriedJessica.lastName = 'Davis'; */
+const marriedJessica = marryPerson(jessica1, 'Davis');
+console.log(`Before :`, jessica1);
+console.log(`After :`, marriedJessica);
+
+const jessica2 = {
+  firstName: 'Jessica', //primitive data
+  lastName: 'William', //primitive data
+  age: 27, //primitive data
+  family: ['Alice', 'Bob'], //object data (arrya of object)
+};
+// Shallow copy
+const jessicaCopy = { ...jessica2 };
+jessicaCopy.lastName = 'Davis';
+console.log(jessica2, jessicaCopy);
+jessicaCopy.family.push('Mark'); // shallow copy in object referrences
+jessicaCopy.family.push('Jonas'); // shallow copy in object referrences
+
+console.log(`Before :`, jessica2);
+console.log(`After :`, jessicaCopy);
+
+// Deep Copy
+const jessicaDeepClone = structuredClone(jessica2); // original object not change using this method
+
+jessicaDeepClone.family.push('Jurasic'); // shallow copy in object referrences
+jessicaDeepClone.family.push('Penguine'); // shallow copy in object referrences
+jessicaDeepClone.job = 'Developer';
+jessicaDeepClone.interst = ['cricket'];
+
+console.log(`Original :`, jessica2);
+console.log(`Clone :`, jessicaDeepClone);
+
+///////////////////////////////////////
+// Memory Mangement Garbage Collection
