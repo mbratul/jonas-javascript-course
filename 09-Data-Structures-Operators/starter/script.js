@@ -47,7 +47,41 @@ const restaurant = {
       close: 24,
     },
   },
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+  // object edstructure method with default value
+  orderDelivery: function ({
+    starterIndex = 1,
+    mainIndex = 0,
+    time = "20:00",
+    address,
+  }) {
+    console.log(
+      `Order received from ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} from ${address} at ${time}`
+    );
+  },
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `here is your delecious pasta with ${ing1} and ${ing2} and ${ing3}`
+    );
+  },
 };
+// Receive 2 return values from a function
+const [starter1, mainCourse1] = restaurant.order(1, 1);
+console.log(
+  `food order of starter menu ${starter1} and main food is ${mainCourse1}`
+);
+restaurant.orderDelivery({
+  time: "22:30",
+  address: "Mipur Ruposhi Dhaka",
+  starterIndex: 2,
+  mainIndex: 1,
+});
+restaurant.orderDelivery({
+  address: "mipur ruposhi",
+  starterIndex: 3,
+});
 //-----Object Destructuring--------
 console.log("-------destructure object-------");
 const { resturentName, categories, openingHours } = restaurant;
@@ -75,7 +109,15 @@ const obj = { aa: 7, bb: 14, cc: 21 };
 console.log(aa, bb);
 //Nested Object while Destructuring
 console.log("-------Nested Object while Destructuring-------");
-
+/* const {
+  fri: { open, close },
+} = openingHours; */
+const {
+  fri: { open: op, close: cl },
+} = openingHours; // nested object
+//console.log(fri);
+//console.log(`opening hours ${open}, \nclosing hours ${close}`);
+console.log(`opening hours ${op}, \nclosing hours ${cl}`); //nested object
 //-----Array Destructuring--------
 
 console.log("-----Array Destructuring--------");
@@ -103,3 +145,39 @@ console.log(i, j, k);
 //Default Values
 const [p = 1, q = 1, r = 1] = [8, 9];
 console.log(p, q, r);
+
+/*----------Spread Operators-----------*/
+console.log("----------Spread Operators-----------");
+const arrTest = [7, 8, 9];
+const spreadArr1 = [1, 2, 3, arrTest]; //not using spread (...) operator in array show another array inside an array
+const spreadArr2 = [1, 2, 3, ...arrTest]; //using spread (...) operator in array
+//not using spread (...) operator in array show another array inside an array
+console.log(spreadArr1);
+console.log(...arrTest);
+//using spread (...) operator in array show it's a one array
+console.log(spreadArr2);
+console.log(...spreadArr2); //when we need an normal value from an array
+
+// here we creating a new array, not manipulating resturent array
+const newMainMenu = [...restaurant.mainMenu, "Biryani"];
+console.log(newMainMenu);
+
+//shallow copy an array
+const copyMainMenu = [...restaurant.mainMenu];
+console.log(copyMainMenu);
+
+const allMenu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(allMenu);
+console.log(...allMenu);
+
+// Iterables: arrays, strings, maps, sets. NOT objects
+const strSpread = "ratul";
+const lettersArray = [...strSpread, " ", "yes"];
+console.log(lettersArray, lettersArray.length);
+
+const ingredients = [
+  prompt("let's make pasta your ingredients are ingredient1"),
+  prompt("let's make pasta your ingredients are ingredient2"),
+  prompt("let's make pasta your ingredients are ingredient3"),
+];
+console.log(...ingredients);
