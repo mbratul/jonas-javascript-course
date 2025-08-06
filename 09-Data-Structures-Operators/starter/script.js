@@ -21,10 +21,13 @@ const mexicanFoods = new Set([
   "avocado",
   "garlic",
 ]);
-
+//-----Destructuring--------
+/* Definition: Destructuring Assignment is a JavaScript expression that allows to unpack of values from arrays, or properties from objects, into distinct variables data can be extracted from arrays, objects, and nested objects, and assigned to variables. 
+url : https://www.geeksforgeeks.org/javascript/destructuring-assignment-in-javascript/
+*/
 // Data needed for first part of the section
 const restaurant = {
-  name: "Classico Italiano",
+  resturentName: "Classico Italiano",
   location: "Via Angelo Tavanti 23, Firenze, Italy",
   categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
   starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
@@ -45,11 +48,36 @@ const restaurant = {
     },
   },
 };
+//-----Object Destructuring--------
+console.log("-------destructure object-------");
+const { resturentName, categories, openingHours } = restaurant;
+console.log(resturentName, categories, openingHours);
+
+//use a name as a varibale
+console.log("-------destructure object use as a variable-------");
+const {
+  resturentName: resturentname,
+  categories: tags,
+  openingHours: hours,
+} = restaurant;
+console.log(resturentname, tags, hours);
+
+//use a default value
+console.log("-------destructure object and use a default value-------");
+const { menu = [], starterMenu: starter = [] } = restaurant;
+console.log(menu, starter);
+//Mutating Variables while Destructuring Objects
+console.log("-------Mutating Variables while Destructuring Objects-------");
+let aa = 111;
+let bb = 999;
+const obj = { aa: 7, bb: 14, cc: 21 };
+({ aa, bb } = obj); //use () parenthases for unexpected token error
+console.log(aa, bb);
+//Nested Object while Destructuring
+console.log("-------Nested Object while Destructuring-------");
 
 //-----Array Destructuring--------
-/* Definition: Destructuring Assignment is a JavaScript expression that allows to unpack of values from arrays, or properties from objects, into distinct variables data can be extracted from arrays, objects, and nested objects, and assigned to variables. 
-url : https://www.geeksforgeeks.org/javascript/destructuring-assignment-in-javascript/
-*/
+
 console.log("-----Array Destructuring--------");
 const arr = [2, 3, 4];
 const a = arr[0];
@@ -66,3 +94,12 @@ const [first, , third] = restaurant.categories; // using (,) we omit an value of
 console.log(first, third);
 const [main, secondary] = restaurant.categories; // using (,) we omit an value of an object property
 console.log(main, secondary);
+
+//nested destructuring
+const nested = [2, 3, [5, 6]];
+const [i, , [j, k]] = nested;
+console.log(i, j, k);
+
+//Default Values
+const [p = 1, q = 1, r = 1] = [8, 9];
+console.log(p, q, r);
