@@ -66,6 +66,10 @@ const restaurant = {
       `here is your delecious pasta with ${ing1} and ${ing2} and ${ing3}`
     );
   },
+  orderPizza: function (mainIngredient, ...otherIngredient) {
+    console.log(mainIngredient);
+    console.log(otherIngredient);
+  },
 };
 // Receive 2 return values from a function
 const [starter1, mainCourse1] = restaurant.order(1, 1);
@@ -197,3 +201,55 @@ const resturentCopy = { ...restaurant };
 resturentCopy.resturentName = "Kebab House";
 console.log(restaurant.resturentName);
 console.log(resturentCopy.resturentName);
+
+/* Rest Pattern and Parameters */
+console.log("---------Rest Pattern and Parameters------");
+const [Pizza, Risotto, ...others] = [
+  ...restaurant.starterMenu,
+  ...restaurant.mainMenu,
+];
+console.log(Pizza, Risotto, others);
+//rest parameter for object
+const { sat, ...weekday } = { ...restaurant.openingHours };
+console.log(sat, weekday);
+
+//rest parameter for function
+function addRestNumber(...number) {
+  let sum = 0;
+  for (let i = 0; i < number.length; i++) {
+    sum += number[i];
+  }
+  console.log(number);
+  console.log(sum);
+}
+addRestNumber(2, 3);
+addRestNumber(4, 5, 6);
+
+const xNumber = [25, 45, 55];
+addRestNumber(...xNumber);
+
+restaurant.orderPizza("mushroom", "onion", "bread", "sauce");
+restaurant.orderPizza("bread");
+
+//Shortcircuiting Logical && and || operator
+console.log("Shortcircuiting Logical && and || operator");
+console.log(3 || "jonas");
+/* Logical Operator have 3 use 
+  1. They can use any Data Types
+  2. They can return any Data Type
+  3. They can also short circuiting
+*/
+console.log("" || "jonas");
+console.log(true || 0);
+console.log(undefined || null);
+console.log(undefined || 0 || "" || "hello" || 23 || null);
+console.log("-------OR--------");
+restaurant.numGuest = 23;
+const guest1 = restaurant.numGuest ? restaurant.numGuest : 10; // ternary operator
+console.log(guest1);
+const guest2 = restaurant.numGuest || 10; // shortcircuiting logical or operator
+console.log(guest2);
+console.log("-------AND--------");
+console.log(0 && "jonas");
+console.log(7 && "jonas");
+console.log("hi" && 23 && null && "jonas" && -54);
