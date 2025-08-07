@@ -175,9 +175,25 @@ const strSpread = "ratul";
 const lettersArray = [...strSpread, " ", "yes"];
 console.log(lettersArray, lettersArray.length);
 
-const ingredients = [
+/* const ingredients = [
   prompt("let's make pasta your ingredients are ingredient1"),
   prompt("let's make pasta your ingredients are ingredient2"),
   prompt("let's make pasta your ingredients are ingredient3"),
-];
+]; 
+// before using this uncomment the code block of ingredient variable
 console.log(...ingredients);
+restaurant.orderPasta(...ingredients); // it's a modern es6 feature to declear an array in a function
+*/
+// Spread Operator(...) in objects
+const addRestaurantOwner = {
+  founder: "ratul",
+  ...restaurant,
+  foundingYear: "2005",
+};
+console.log(addRestaurantOwner);
+
+// change the resturent name by using a shllow copy of resturent object
+const resturentCopy = { ...restaurant };
+resturentCopy.resturentName = "Kebab House";
+console.log(restaurant.resturentName);
+console.log(resturentCopy.resturentName);
