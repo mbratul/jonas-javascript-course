@@ -253,3 +253,56 @@ console.log("-------AND--------");
 console.log(0 && "jonas");
 console.log(7 && "jonas");
 console.log("hi" && 23 && null && "jonas" && -54);
+
+// checks if order pizza method exist then the and operator run the method
+restaurant.orderPizza && restaurant.orderPizza("mushroom", "bread");
+
+/* Nullish Coaleching Operator */
+console.log("-------Nullish Coalescing Operator-------");
+///////////////////////////////////////
+// The Nullish Coalescing Operator
+restaurant.numGuests = 0;
+const guests3 = restaurant.numGuests || 10;
+console.log(guests3);
+
+// Nullish: null and undefined (NOT 0 or '')
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
+
+/* Logical Assignment Operator */
+console.log("-------Logical Assignment Operator-------");
+
+const resturent1 = {
+  resturentName: "Capri",
+  numGuest: 20,
+};
+const resturent2 = {
+  resturentName: "la piaza",
+  owner: "ratul",
+};
+const resturent3 = {
+  resturentName: "rabbani",
+  menu: ["kebab", "grill"],
+};
+
+resturent1.numGuest = resturent1.numGuest || 10;
+resturent2.numGuest = resturent2.numGuest || 10;
+resturent3.numGuest = resturent3.numGuest || 10;
+console.log("-------Shortranging OR Operator-------");
+console.log(resturent1, resturent2, resturent3);
+
+resturent1.numGuest ||= 10;
+resturent2.numGuest ||= 10;
+resturent3.numGuest ||= 10;
+console.log("-------Logical Assignment OR Operator-------");
+console.log(resturent1, resturent2, resturent3);
+
+resturent1.numGuest ??= 10;
+resturent2.numGuest ??= 10;
+resturent3.numGuest ??= 10;
+console.log("-------Nullish Assignment Operator-------");
+console.log(resturent1, resturent2, resturent3);
+
+//resturent2.owner = resturent2.owner && "<Anonymous>";
+resturent2.owner &&= "<Anonymous>";
+console.log(resturent2);
