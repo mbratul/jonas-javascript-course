@@ -306,3 +306,21 @@ console.log(resturent1, resturent2, resturent3);
 //resturent2.owner = resturent2.owner && "<Anonymous>";
 resturent2.owner &&= "<Anonymous>";
 console.log(resturent2);
+
+//----Looping Arrays for of loop------
+console.log("----Looping Arrays for of loop------");
+const menuList = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const items of menuList) console.log(items);
+for (const items of menuList.entries()) {
+  console.log(items);
+}
+// Destructuring for of loops
+for (const [i, el] of menuList.entries()) {
+  console.log(`${i + 1} of ${el}`);
+}
+
+//----Optional Chaining------
+console.log("----Optional Chaining (?.)------");
+console.log(restaurant.openingHours.mon?.open);
+console.log(restaurant.openingHours?.mon?.open);
