@@ -26,6 +26,8 @@ const mexicanFoods = new Set([
 url : https://www.geeksforgeeks.org/javascript/destructuring-assignment-in-javascript/
 */
 // Data needed for first part of the section
+const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+
 const restaurant = {
   resturentName: "Classico Italiano",
   location: "Via Angelo Tavanti 23, Firenze, Italy",
@@ -324,3 +326,116 @@ for (const [i, el] of menuList.entries()) {
 console.log("----Optional Chaining (?.)------");
 console.log(restaurant.openingHours.mon?.open);
 console.log(restaurant.openingHours?.mon?.open);
+
+///////////////////////////////////////
+// Looping Objects: Object Keys, Values, and Entries
+console.log("----Looping Objects: Object Keys, Values, and Entries----");
+//Property Names
+const properties = Object.keys(openingHours);
+console.log(properties);
+let openStr = `We are open on ${properties.length} days :`;
+for (const day of properties) {
+  openStr += `${day} `;
+}
+console.log(openStr);
+
+//Property Values
+const values = Object.values(openingHours);
+console.log(values);
+
+//Entire Object
+const entries = Object.entries(openingHours);
+console.log(entries);
+
+for (const [day, { open, close }] of entries) {
+  console.log(`On ${day} day We are open at ${open} and close at ${close}`);
+}
+
+///////////////////////////////////////
+// Sets Data Structure
+console.log("------Sets Data Structure------");
+const orderSet = new Set([
+  "pasta",
+  "pizza",
+  "burger",
+  "kebab",
+  "pasta",
+  "halim",
+  "pizza",
+]);
+console.log(orderSet);
+console.log(orderSet.size);
+console.log(orderSet.has("pizza"));
+console.log(orderSet.has("fuchka"));
+console.log(orderSet.add("steak"));
+console.log(orderSet.delete("burger"));
+console.log(orderSet.size);
+console.log(new Set("ratul"));
+
+//loop is possible in set
+for (const order of orderSet) {
+  console.log(order);
+}
+console.log(new Set("muhtasim billah ratul").size);
+/* Set has 4 method originally
+1. has() 2. add() 3. delete() 4. clear()
+set also has 7 new method in ES2025
+1. intersection(), 2. union(), 3. difference(), 4. symmetricDifference() 5. isSubsetof(), 6. isSupersetof(), 7. isDisjointFrom()
+set also use this method 
+1. entries() 2. forEach() 3. keys() 4. values()
+Sets property is (size) just like Array has property of (length)
+ */
+///////////////////////////////////////
+// New Operations to Make Sets Useful!
+
+const italianFoods1 = new Set([
+  "pasta",
+  "gnocchi",
+  "tomatoes",
+  "olive oil",
+  "garlic",
+  "basil",
+]);
+
+const mexicanFoods1 = new Set([
+  "tortillas",
+  "beans",
+  "rice",
+  "tomatoes",
+  "avocado",
+  "garlic",
+]);
+
+const commonFoods = italianFoods1.intersection(mexicanFoods1);
+console.log("Intersection Foods are :", commonFoods);
+console.log(...commonFoods);
+
+const allFoods = italianFoods1.union(mexicanFoods1);
+console.log("Union Foods are :", allFoods);
+console.log(...allFoods);
+
+const uniqueItalianFoods = italianFoods1.difference(mexicanFoods1);
+console.log("Unique Italian Foods are : ", uniqueItalianFoods);
+
+const uniqueMexicaFoods = mexicanFoods1.difference(italianFoods1);
+console.log("Unique Mexican Foods are : ", uniqueMexicaFoods);
+
+const uniqueItalianAndMexicanFoods =
+  italianFoods1.symmetricDifference(mexicanFoods1);
+console.log("Unique Foods of both Sets are :", uniqueItalianAndMexicanFoods);
+
+console.log(italianFoods1.isDisjointFrom(mexicanFoods1));
+
+///////////////////////////////////////
+// Maps: Iteration
+
+const question = new Map([
+  ["question", "What is the best programming language in the world?"],
+  [1, "C"],
+  [2, "Java"],
+  [3, "JavaScript"],
+  ["correct", 3],
+  [true, "Correct 🎉"],
+  [false, "Try again!"],
+]);
+console.log(question);
