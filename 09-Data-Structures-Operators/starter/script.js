@@ -435,7 +435,29 @@ const question = new Map([
   [2, "Java"],
   [3, "JavaScript"],
   ["correct", 3],
-  [true, "Correct 🎉"],
-  [false, "Try again!"],
+  [true, "correct"],
+  [false, "wrong"],
 ]);
 console.log(question);
+// Convert object to map
+console.log(Object.entries(openingHours));
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap);
+
+//Quiz App
+console.log(question.get("question"));
+for (const [key, value] of question) {
+  if (typeof key === "number") {
+    console.log(`Answer of ${key} is : ${value} `);
+  }
+}
+console.log("Correct Answer is ", question.get("correct"));
+/* const answer = Number(prompt("Correct Answer is"));
+console.log(answer);
+console.log(question.get(question.get("correct") === answer)); */
+
+// Convert map to array
+console.log([...question]);
+console.log(question.entries());
+console.log(question.keys());
+console.log(question.values());
