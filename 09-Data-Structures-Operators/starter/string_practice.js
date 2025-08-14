@@ -149,3 +149,11 @@ const capitalizeName = function (name) {
 capitalizeName("jonas schidmann");
 capitalizeName("barak obama");
 capitalizeName("muhtasim billah ratul");
+
+//Padding, add string to first and last of a content
+const padMessage = "Go get jonas!";
+console.log(padMessage.padStart(25, "+")); //Pads the current string with a given string (possibly repeated) so that the resulting string reaches a given length. The padding is applied from the start (left) of the current string.
+
+console.log(padMessage.padEnd("25", "+")); //Pads the current string with a given string (possibly repeated) so that the resulting string reaches a given length. The padding is applied from the end (right) of the current string.
+
+console.log(padMessage.padStart(25, "+").padEnd(40, "+"));
