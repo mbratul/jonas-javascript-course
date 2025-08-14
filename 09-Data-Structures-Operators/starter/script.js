@@ -25,6 +25,7 @@ const mexicanFoods = new Set([
 /* Definition: Destructuring Assignment is a JavaScript expression that allows to unpack of values from arrays, or properties from objects, into distinct variables data can be extracted from arrays, objects, and nested objects, and assigned to variables. 
 url : https://www.geeksforgeeks.org/javascript/destructuring-assignment-in-javascript/
 */
+console.log("------Practice Begin------");
 // Data needed for first part of the section
 const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
