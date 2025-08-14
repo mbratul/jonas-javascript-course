@@ -64,6 +64,88 @@ console.log("-----Comparing Email-----");
 const email = "hello@jonas.io";
 const loginEmail = "  Hello@Jonas.Io \n";
 
-const lowerEmail = loginEmail.toLowerCase();
-const trimEmail = lowerEmail.trim();
+const lowerEmail = loginEmail.toLowerCase(); //Converts all the alphabetic characters in a string to lowercase.
+const trimEmail = lowerEmail.trim(); //Removes the leading and trailing white space and line terminator characters from a string.
 console.log(trimEmail);
+console.log("-----Normaliz Email-----");
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail);
+console.log(email === normalizedEmail);
+console.log(loginEmail.trimStart(), loginEmail.trimEnd());
+
+//Replacing String
+console.log("----Replacing String----");
+const priceGB = "288,97£";
+const priceUS = priceGB.replace(",", ".").replace("£", "$"); //Replaces text in a string, using a regular expression or search string.
+console.log(priceUS);
+const announcement =
+  "All Passenger come to boarding door 23!, Boarding door 23";
+console.log(announcement.replace("door", "gate"));
+console.log(announcement.replaceAll("door", "gate")); //Replace all instances of a substring in a string, using a regular expression or search string.
+
+//Simple Regular Expression Example
+console.log(announcement.replace(/door/g, "gate"));
+
+// Boolean Methods
+console.log("------Boolean Methods------");
+
+const plane1 = "Airbus A320neo";
+console.log(plane1.includes("A320")); //Returns true if searchString appears as a substring of the result of converting this object to a String, at one or more positions that are greater than or equal to position; otherwise, returns false.
+console.log(plane1.includes("Boeing"));
+
+console.log(plane1.startsWith("Air")); //Returns true if the sequence of elements of searchString converted to a String is the same as the corresponding elements of this object (converted to a String) starting at position. Otherwise returns false.
+
+console.log(plane1.endsWith("neo")); //Returns true if the sequence of elements of searchString converted to a String is the same as the corresponding elements of this object (converted to a String) starting at endPosition – length(this). Otherwise returns false.
+console.log("------Checking Boolean Methods------");
+if (plane1.startsWith("Airbus") && plane1.endsWith("neo")) {
+  console.log("Part of the New Airbus Family");
+} else {
+  console.log("Not a Part Family");
+}
+
+// Practice exercise
+console.log("-----Practice Exercise-----");
+
+const checkBaggage = function (items) {
+  const baggege = items.toLowerCase();
+  if (baggege.includes("knife") || baggege.includes("gun")) {
+    console.log("You are Not Allowed");
+  } else {
+    console.log("Welcome Aboard");
+  }
+};
+
+checkBaggage("I have a laptop, some Food and a pocket Knife");
+checkBaggage("Socks and camera");
+checkBaggage("Got some snacks and a gun for protection");
+
+///////////////////////////////////////
+// Working With Strings - Part 3
+console.log("----Working With Strings - Part 3----");
+
+// Split & Join String method in js
+console.log("a+very+night+string".split("+")); //Split a string into substrings using the specified separator and return them as an array.
+console.log("Muhtasim Billah Ratul".split(" "));
+console.log("Muhtasim Billah Ratul".toLowerCase().split(" "));
+console.log("Muhtasim Billah Ratul".toUpperCase().split(" "));
+
+const [firstName, middleName, lastName] = "Muhtasim Billah Ratul".split(" ");
+//Adds all the elements of an array into a string, separated by the specified separator string.
+const newName = ["Mr.", firstName, middleName, lastName.toUpperCase()].join(
+  " "
+); // join method
+console.log(newName);
+
+// capitalize name function
+const capitalizeName = function (name) {
+  const names = name.split(" ");
+  const nameUpper = [];
+  for (const n of names) {
+    //nameUpper.push(n[0].toUpperCase() + n.slice(1));
+    nameUpper.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+  console.log(nameUpper.join(" "));
+};
+capitalizeName("jonas schidmann");
+capitalizeName("barak obama");
+capitalizeName("muhtasim billah ratul");
