@@ -157,3 +157,22 @@ console.log(padMessage.padStart(25, "+")); //Pads the current string with a give
 console.log(padMessage.padEnd("25", "+")); //Pads the current string with a given string (possibly repeated) so that the resulting string reaches a given length. The padding is applied from the end (right) of the current string.
 
 console.log(padMessage.padStart(25, "+").padEnd(40, "+"));
+
+console.log("-----Mask Credit Card-----");
+// create a function to mask all number of a credit card except last 4 digit
+const maskCreditCard = function (number) {
+  const str = number + ""; // convert number into a string
+  const last = str.slice(-4);
+  return last.padStart(str.length, "*");
+};
+console.log(maskCreditCard(4554450055600090));
+
+// repeat method
+const message2 = "Bad Weather All Departure Will Delayed...\n";
+console.log(message2.repeat(3));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} plane waitting ${"✈️".repeat(n)}`);
+};
+planesInLine(3);
+planesInLine(4);
