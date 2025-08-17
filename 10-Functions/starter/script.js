@@ -10,7 +10,7 @@ const createBooking = function (
   numPassengers = 1,
   price = 199 * numPassengers
 ) {
-  //ES5 Way of default parameter assign
+  //ES5 boilerplate of Default Parameter
   //numPassengers = numPassengers || 1;
   //price = price || 199;
   const booking = {
