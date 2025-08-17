@@ -63,20 +63,119 @@ const newPassport = function (person) {
 // Higher Order Function - Functions Accepting Callback Functions
 console.log("Higher Order Function - Functions Accepting Callback Functions");
 
+/* First-class function: 
+A programming language is said to have First-class functions when functions in that language are treated like any other variable. For example, in such a language, a function can be passed as an argument to other functions, can be returned by another function and can be assigned as a value to a variable. */
+// first class function
 const oneWord = function (str) {
   return str.replace(/ /g, "").toLowerCase();
 };
+
+// first class function
 const upperFirstWord = function (str) {
   const [first, ...others] = str.split(" ");
   return [first.toUpperCase(), ...others].join(" ");
 };
-
+/* Higher Order Function: 
+A Higher-Order Function (HOF) in JavaScript is a function that does one or both of the following:
+Takes another function as an argument (a callback function).
+Returns a new function.
+This makes JavaScript very powerful because functions can be treated just like values (they are first-class citizens).
+ */
 //Higher Order Fuction
 const transformer = function (str, fn) {
   console.log(`Original Word : ${str}`);
-  console.log(`Transfor Word : ${fn(str)}`);
+  console.log(`Transform Word : ${fn(str)}`);
   console.log(`Transform by: ${fn.name}`);
 };
 
 transformer("JavaScript is best for web", upperFirstWord);
 transformer("JavaScript is best for web", oneWord);
+
+const high5 = function () {
+  console.log("👏");
+};
+document.body.addEventListener("click", high5);
+
+["ratul", "jasim", "tamim"].forEach(high5);
+const text = "hi this is a test javascript method";
+const [first, ...other] = text.split(" ");
+console.log(text.split(" "));
+console.log([first, ...other].join(" "));
+
+///////////////////////////////////////
+// Functions Returning Functions
+console.log("----Functions Returning Functions----");
+
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
+};
+const greeterHey = greet("hey");
+greeterHey("jonas");
+
+greet("hello")("jonas");
+
+// Rewrite this greet into a arrow function
+
+/* const greetArrow = (greeting) => {
+  return (userName) => {
+    console.log(`${greeting} ${userName}`);
+  };
+};
+const greetHeyArrow = greetArrow("hey arrow");
+greetHeyArrow("jonas arrow"); */
+
+// arrow function
+const greetArrow = (greeting) => (name) => console.log(`${greeting} ${name}`);
+greetArrow("hey")("jonas arrow");
+
+///////////////////////////////////////
+// The call and apply Methods
+console.log("----The call and apply Methods----");
+
+const lufthansa = {
+  airline: "Luftahnsa",
+  iataCode: "LH",
+  bookings: [],
+  book: function (flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    //debugger;
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
+};
+
+const book = lufthansa.book;
+//does not work
+//book(254, 'sara williams')
+
+lufthansa.book(236, "john smith");
+lufthansa.book(635, "mike tyson");
+console.log(lufthansa);
+
+const euroAirlines = {
+  airline: "EuroWings",
+  iataCode: "EW",
+  bookings: [],
+};
+// Call Method
+book.call(euroAirlines, 23, "sara williams");
+console.log(euroAirlines);
+book.call(lufthansa, 243, "john allen");
+console.log(lufthansa);
+
+const swiss = {
+  airline: "Swiss Airlines",
+  iataCode: "LX",
+  bookings: [],
+};
+book.call(swiss, 465, "Willam Aren");
+console.log(swiss);
+
+// Apply Method does not use in moder javascript now mainly use spread operator
+
+const flightData1 = [583, "Geaorge Cooper"];
+book.call(swiss, ...flightData1);
+console.log(swiss);
