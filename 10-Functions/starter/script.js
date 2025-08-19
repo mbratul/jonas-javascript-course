@@ -225,3 +225,59 @@ const addVat2 = addTaxRate(0.23);
 console.log(addVat2(200));
 console.log(addVat(100));
 console.log(addVat(23));
+
+///////////////////////////////////////
+// Immediately Invoked Function Expressions (IIFE)
+console.log("----Immediately Invoked Function Expressions (IIFE)----");
+/* Definition: Immediately Invoked Function Expressions (IIFE) are JavaScript functions that are executed immediately after they are defined. They are typically used to create a local scope for variables to prevent them from polluting the global scope. url: https://www.geeksforgeeks.org/javascript/immediately-invoked-function-expressions-iife-in-javascript/*/
+
+const runOnce = function () {
+  console.log("this will run once");
+};
+runOnce();
+
+// IIFE
+(function () {
+  console.log("IIFE function this will never run again");
+  const isPrivate = 23;
+})();
+//not work outside of IIFE function
+//console.log(isPrivate); //Uncaught ReferenceError: isPrivate is not defined
+// Arrow IIFE
+(() => console.log("Arrow IIFE function it will never run again"))();
+
+// Example of block scope in js
+{
+  const isPrivate = 23;
+}
+//also it's not work because it's outside of it's scop
+//console.log(isPrivate); //Uncaught ReferenceError: isPrivate is not defined
+
+/* 
+  Use Cases Of IIFE
+Avoid polluting the global namespace.
+To create closures in JavaScript.
+IIFE is used to create private and  public variables and methods.
+It is used to execute the async and await function.
+It is used to work with require function. 
+*/
+
+///////////////////////////////////////
+// Closures
+console.log("----Closures----");
+/* Definition: A closure is a function that retains access to its outer function's variables, even after the outer function has finished executing. It "remembers" the environment in which it was created, allowing it to access variables outside its immediate scope. url: https://www.geeksforgeeks.org/javascript/closure-in-javascript/ */
+
+const secureBooking = function () {
+  let passangerCount = 0;
+  return function () {
+    passangerCount++;
+    console.log(`${passangerCount} passangers`);
+  };
+};
+
+const booker = secureBooking();
+
+booker(1);
+booker(2);
+booker(3);
+booker(0);
