@@ -277,7 +277,52 @@ const secureBooking = function () {
 
 const booker = secureBooking();
 
-booker(1);
-booker(2);
-booker(3);
-booker(0);
+booker();
+booker();
+booker();
+booker();
+
+console.dir(booker);
+// Another Example of Closure
+console.log("Another Example of Closure");
+
+let f;
+const g = function () {
+  const a = 20;
+  //console.log(a);
+  f = function () {
+    console.log(a * 2);
+  };
+  //console.log(f());
+};
+g();
+f();
+console.dir(f);
+
+const h = function () {
+  const b = 20;
+  //console.log(a);
+  f = function () {
+    console.log(b * 4);
+  };
+  //console.log(f());
+};
+
+h();
+f();
+console.dir(f);
+
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+  setTimeout(function () {
+    console.log(`We are currently boarding ${n} passenger`);
+    console.log(`There are 3 group with ${perGroup} passangers`);
+  }, wait * 1000);
+
+  //console.log(`Will start boarding in ${wait} seconds`);
+};
+boardPassengers(60, 5);
+// callback function
+setTimeout(function () {
+  console.log(`Timer`);
+}, 3000);
