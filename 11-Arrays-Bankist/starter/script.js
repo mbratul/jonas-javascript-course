@@ -147,6 +147,35 @@ console.log(letters.join(" - "));
     } else {
       console.log(`movement ${index} you withdraw ${Math.abs(movement)}`);
     }
+    //console.log(`${arr}`);
   });
   // continue and break is not applicable in forEach loop.
+}
+
+{
+  console.log("-----forEach Method for MAP-----");
+  const currencies = new Map([
+    ["USD", "United States dollar"],
+    ["EUR", "Euro"],
+    ["GBP", "Pound sterling"],
+  ]);
+  currencies.forEach(function (value, key, map) {
+    console.log(`${key} : ${value}`);
+  });
+}
+{
+  console.log("-----forEach Method for Set-----");
+  const currenciesUnique = new Set([
+    "USD",
+    "EUR",
+    "BDT",
+    "GBP",
+    "USD",
+    "BDT",
+    "usd",
+  ]);
+  console.log(currenciesUnique);
+  currenciesUnique.forEach(function (value, _, set) {
+    console.log(`${value} : ${value}`);
+  });
 }
