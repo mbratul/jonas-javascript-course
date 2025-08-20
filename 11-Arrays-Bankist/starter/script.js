@@ -34,6 +34,7 @@ const account4 = {
 };
 
 const accounts = [account1, account2, account3, account4];
+//console.log(account1);
 
 // Elements
 const labelWelcome = document.querySelector(".welcome");
