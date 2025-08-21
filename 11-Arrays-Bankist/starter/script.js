@@ -188,3 +188,37 @@ console.log("----Array Method Discussion----");
     console.log(`${value} : ${value}`);
   });
 }
+
+///////////////////////////////////////
+// The map Method
+/* Definition: The map() method is an ES5 feature that creates a new array by applying a function to each element of the original array. It skips empty elements and does not modify the original array. */
+{
+  console.log("----Map Immutable Method----");
+  const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+  const euroToUSD = 1.1;
+  // map method convert USD to Euro
+  const movementsUSD = movements.map(function (mov) {
+    return Math.trunc(mov * euroToUSD);
+    //return 23;
+  });
+  // using arrow function
+  const movementsUSDArrow = movements.map((mov) => Math.trunc(mov * euroToUSD));
+
+  console.log(movements);
+  console.log(movementsUSD);
+  console.log(movementsUSDArrow);
+
+  //display movements deposited or withdrawl
+  const movementsDescriptions = movements.map(function (mov, i) {
+    return `Movement ${
+      i + 1
+    } you ${mov > 0 ? "deposited" : "withdraw"} ${Math.abs(mov)}`;
+    /* if (mov > 0) {
+      return `movement ${i + 1} you deposited ${mov}`;
+    } else {
+      return `Movement ${i + 1} you withdraw ${Math.abs(mov)}`;
+    } */
+  });
+  console.log(movementsDescriptions);
+  console.log(...movementsDescriptions);
+}
