@@ -193,7 +193,7 @@ console.log("----Array Method Discussion----");
 // The map Method
 /* Definition: The map() method is an ES5 feature that creates a new array by applying a function to each element of the original array. It skips empty elements and does not modify the original array. */
 {
-  console.log("----Map Immutable Method----");
+  console.log("----map immutable method----");
   const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
   const euroToUSD = 1.1;
   // map method convert USD to Euro
@@ -221,4 +221,30 @@ console.log("----Array Method Discussion----");
   });
   console.log(movementsDescriptions);
   console.log(...movementsDescriptions);
+}
+
+///////////////////////////////////////
+// The Filter Method
+/* Definition: The filter() method of Array instances creates a shallow copy of a portion of a given array, filtered down to just the elements from the given array that pass the test implemented by the provided function. */
+{
+  console.log("----filter immutable method----");
+  const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+  // filter the array with only positive value
+  const deposits = movements.filter(function (mov) {
+    return mov > 0;
+  });
+  console.log(movements);
+  console.log(deposits);
+  // filter the array with only negative value
+  const withdrawls = movements.filter(function (mov) {
+    return mov < 0;
+  });
+  console.log(withdrawls);
+}
+
+///////////////////////////////////////
+// The Reduce Method
+{
+  console.log("----reduce immutable method----");
 }
