@@ -5,7 +5,7 @@
 // BANKIST APP
 
 // Data
-const account1 = {
+/* const account1 = {
   owner: "Jonas Schmedtmann",
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
   interestRate: 1.2, // %
@@ -34,10 +34,9 @@ const account4 = {
 };
 
 const accounts = [account1, account2, account3, account4];
-//console.log(account1);
-
+ */
 // Elements
-const labelWelcome = document.querySelector(".welcome");
+/* const labelWelcome = document.querySelector(".welcome");
 const labelDate = document.querySelector(".date");
 const labelBalance = document.querySelector(".balance__value");
 const labelSumIn = document.querySelector(".summary__value--in");
@@ -61,7 +60,7 @@ const inputTransferAmount = document.querySelector(".form__input--amount");
 const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
-
+ */
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -76,41 +75,50 @@ const currencies = new Map([
 
 /////////////////////////////////////////////////
 console.log("----Array Method Discussion----");
-let arr = ["a", "b", "c", "d", "e"];
-//slice method
-console.log("----Slice Immutable Method----");
-console.log(arr.slice());
-console.log(arr.slice(2));
-console.log(arr.slice(2, 4));
-console.log(arr.slice(-2));
-console.log(arr.slice(1, -2));
+{
+  let arr = ["a", "b", "c", "d", "e"];
+  //slice method
+  console.log("----Slice Immutable Method----");
+  console.log(arr.slice());
+  console.log(arr.slice(2));
+  console.log(arr.slice(2, 4));
+  console.log(arr.slice(-2));
+  console.log(arr.slice(1, -2));
+}
 
 //splice method
-console.log("----Splice Mutable Method----");
-console.log(arr);
-console.log(arr.splice(2));
-console.log(arr.splice(-2));
+{
+  let arr = ["a", "b", "c", "d", "e"];
+  console.log("----Splice Mutable Method----");
+  console.log(arr);
+  console.log(arr.splice(2));
+  console.log(arr.splice(-2));
+}
 
 //Reverse Method
-console.log("----Reverse Mutable Method----");
-const arr2 = ["j", "i", "h", "g", "f"];
-console.log(arr2);
-console.log(arr2.reverse());
-console.log(arr2);
+{
+  console.log("----Reverse Mutable Method----");
+  const arr2 = ["j", "i", "h", "g", "f"];
+  console.log(arr2);
+  console.log(arr2.reverse());
+  console.log(arr2);
+}
 
 //Concat Method
-console.log("----Concat Immutable Method----");
-let arr3 = ["a", "b", "c", "d", "e"];
-let arr4 = ["f", "g", "h", "i", "j"];
+{
+  console.log("----Concat Immutable Method----");
+  let arr3 = ["a", "b", "c", "d", "e"];
+  let arr4 = ["f", "g", "h", "i", "j"];
 
-const letters = arr3.concat(arr4);
-console.log(letters);
-console.log([...arr3, ...arr4]); // spread operator work exasct same as concat method does
+  const letters = arr3.concat(arr4);
+  console.log(letters);
+  console.log([...arr3, ...arr4]); // spread operator work exasct same as concat method does
 
-//Join Method
-console.log("----Join Immutable Method----");
-console.log(letters.join(" - "));
+  //Join Method
 
+  console.log("----Join Immutable Method----");
+  console.log(letters.join(" - "));
+}
 {
   //at Method
   console.log("----at Immutable Method----at method also works on string");
