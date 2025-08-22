@@ -136,6 +136,11 @@ console.log("----Array Method Discussion----");
 {
   console.log("----for each iterator(loop) method----");
   /* Definition: The forEach() method of Array instances executes a provided function once for each array element. */
+  /* 
+  - Purpose: Used to execute a function on each element of the array.
+  - Return Value: undefined → it doesn’t return a new array.
+  - Use Case: When you just want to perform side effects (like logging, updating variables, modifying DOM, etc.), not build a new array. 
+  */
   const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
   console.log("-----FOR Of Method-----");
@@ -163,6 +168,11 @@ console.log("----Array Method Discussion----");
 
 {
   console.log("-----forEach Method for MAP-----");
+  /* 
+  - Purpose: Used to execute a function on each element of the array.
+  - Return Value: undefined → it doesn’t return a new array.
+  - Use Case: When you just want to perform side effects (like logging, updating variables, modifying DOM, etc.), not build a new array. 
+  */
   const currencies = new Map([
     ["USD", "United States dollar"],
     ["EUR", "Euro"],
@@ -192,11 +202,17 @@ console.log("----Array Method Discussion----");
 ///////////////////////////////////////
 // The map Method
 /* Definition: The map() method is an ES5 feature that creates a new array by applying a function to each element of the original array. It skips empty elements and does not modify the original array. */
+/* 
+  - Purpose: Used to transform each element of the array into something new.
+  - Return Value: A new array with the transformed values (original array is unchanged).
+  - Use Case: When you want to create a new array based on the old one.
+ */
 {
   console.log("----map immutable method----");
   const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
   const euroToUSD = 1.1;
   // map method convert USD to Euro
+  //Calls a defined callback function on each element of an array, and returns an array that contains the results.
   const movementsUSD = movements.map(function (mov) {
     return Math.trunc(mov * euroToUSD);
     //return 23;
@@ -225,7 +241,8 @@ console.log("----Array Method Discussion----");
   const data = [1, 5, 64, 48, 54, 76, 25, 48];
 
   const mapData = data.map(function (currentValue, index, arr) {
-    return currentValue % 2;
+    return `Ratul ${index + 1}`;
+    //return currentValue % 2;
     // console.log(currentValue * 2);
     // console.log(index);
     // console.log(arr);
@@ -242,6 +259,7 @@ console.log("----Array Method Discussion----");
   const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
   // filter the array with only positive value
+  //Returns the elements of an array that meet the condition specified in a callback function.
   const deposits = movements.filter(function (mov) {
     return mov > 0;
   });
