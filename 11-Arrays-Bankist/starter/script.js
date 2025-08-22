@@ -221,6 +221,17 @@ console.log("----Array Method Discussion----");
   });
   console.log(movementsDescriptions);
   console.log(...movementsDescriptions);
+
+  const data = [1, 5, 64, 48, 54, 76, 25, 48];
+
+  const mapData = data.map(function (currentValue, index, arr) {
+    return currentValue % 2;
+    // console.log(currentValue * 2);
+    // console.log(index);
+    // console.log(arr);
+    // console.log("----------");
+  });
+  console.log(mapData);
 }
 
 ///////////////////////////////////////
