@@ -78,6 +78,13 @@ const displayMovement = function (movements) {
 
 displayMovement(account1.movements);
 
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce(function (acc, mov) {
+    return acc + mov;
+  }, 0);
+  labelBalance.textContent = `${balance} EUR`;
+};
+calcDisplayBalance(account1.movements);
 //console.log(containerMovements.innerHTML);
 
 // user name

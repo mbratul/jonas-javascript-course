@@ -276,4 +276,42 @@ console.log("----Array Method Discussion----");
 // The Reduce Method
 {
   console.log("----reduce immutable method----");
+  const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+  console.log(movements);
+  //A function that accepts up to four arguments. The reduce method calls the callbackfn function one time for each element in the array.
+  //accumulator -> snowball
+  // reduce method has two value, one callback function and a initial value
+  console.log("reduce method using regualr function");
+  const balance = movements.reduce(function (acc, curr, i) {
+    console.log(`Iteration ${i} : ${acc}`);
+    return acc + curr;
+  }, 0);
+  console.log(balance);
+
+  //reduce method  using arrow
+  console.log("reduce method using arrow function");
+  const balance2 = movements.reduce((acc, curr) => {
+    return acc + curr;
+  }, 0);
+  console.log(balance2);
+
+  //same operation using for of loop
+  console.log("same operation using for of loop");
+  let balance3 = 0;
+  for (const mov of movements) balance3 += mov;
+  console.log(balance3);
+}
+
+{
+  // find maximum value using reduce method
+  console.log("find maximum value using reduce method");
+  const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+  const max = movements.reduce(function (acc, curr) {
+    if (acc > curr) {
+      return acc;
+    } else {
+      return curr;
+    }
+  }, movements[0]);
+  console.log(max);
 }
