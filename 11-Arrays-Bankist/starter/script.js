@@ -270,6 +270,40 @@ console.log("----Array Method Discussion----");
     return mov < 0;
   });
   console.log(withdrawls);
+
+  const persons = [
+    { id: 1, name: "Rahim", age: 25, profession: "Web Developer" },
+    { id: 2, name: "Karim", age: 28, profession: "Graphic Designer" },
+    { id: 3, name: "Sadia", age: 23, profession: "Software Engineer" },
+    { id: 4, name: "Jamil", age: 30, profession: "Doctor" },
+    { id: 5, name: "Nusrat", age: 26, profession: "Teacher" },
+    { id: 6, name: "Hasan", age: 27, profession: "Digital Marketer" },
+    { id: 7, name: "Rafi", age: 24, profession: "Content Writer" },
+    { id: 8, name: "Mim", age: 22, profession: "UI/UX Designer" },
+    { id: 9, name: "Tanvir", age: 29, profession: "Civil Engineer" },
+    { id: 10, name: "Ayesha", age: 21, profession: "Student" },
+    { id: 11, name: "Rakib", age: 32, profession: "Businessman" },
+    { id: 12, name: "Farzana", age: 27, profession: "Nurse" },
+    { id: 13, name: "Omar", age: 35, profession: "Project Manager" },
+    { id: 14, name: "Shirin", age: 20, profession: "Intern" },
+    { id: 15, name: "Babul", age: 40, profession: "Lawyer" },
+    { id: 16, name: "Sumaiya", age: 23, profession: "Blogger" },
+    { id: 17, name: "Imran", age: 31, profession: "Data Analyst" },
+    { id: 18, name: "Mahi", age: 22, profession: "Photographer" },
+    { id: 19, name: "Shakil", age: 26, profession: "Mobile App Developer" },
+    { id: 20, name: "Rupa", age: 28, profession: "HR Manager" },
+  ];
+
+  //console.log(persons);
+  const filterPrefession = persons.filter(function (currentValue, index) {
+    /* if (currentValue.profession.toLowerCase() === "digital marketer") {
+      return true;
+    } else {
+      return false;
+    } */
+    return currentValue.profession === "Photographer" ? true : false;
+  });
+  console.log(filterPrefession);
 }
 
 ///////////////////////////////////////
