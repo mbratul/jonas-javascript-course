@@ -78,15 +78,69 @@ const displayMovement = function (movements) {
 
 displayMovement(account1.movements);
 
+// calculate total
 const calcDisplayBalance = function (movements) {
   const balance = movements.reduce(function (acc, mov) {
     return acc + mov;
   }, 0);
-  labelBalance.textContent = `${balance} EUR`;
+  labelBalance.textContent = `${balance}€`;
 };
 calcDisplayBalance(account1.movements);
 //console.log(containerMovements.innerHTML);
 
+// calculate total deposit
+const calcDisplaySummary = function (movements) {
+  const income = movements
+    .filter(function (mov) {
+      return mov > 0;
+    })
+    .reduce(function (acc, mov) {
+      return acc + mov;
+    }, 0);
+  labelSumIn.textContent = `${income}€`;
+
+  // calculate total withdrawl
+  const withdrawal = movements
+    .filter(function (mov) {
+      return mov < 0;
+    })
+    .reduce(function (acc, mov) {
+      return acc + mov;
+    }, 0);
+  labelSumOut.textContent = `${Math.abs(withdrawal)}€`;
+
+  // calculate total interest
+  const interest = movements
+    .filter(function (mov) {
+      return mov > 0;
+    })
+    .map(function (deposit) {
+      return (deposit * 1.2) / 100;
+    })
+    .filter(function (int, i, arr) {
+      //console.log(i, arr);
+      return int >= 1;
+    })
+    .reduce(function (acc, int) {
+      return acc + int;
+    }, 0);
+  labelSumInterest.textContent = `${interest}€`;
+};
+console.log("display summary");
+calcDisplaySummary(account1.movements);
+
+// calculate total withdrawl
+/* const calcDisplayWithdrawl = function (movements) {
+  const withdrawal = movements
+    .filter(function (mov) {
+      return mov < 0;
+    })
+    .reduce(function (acc, mov) {
+      return acc + mov;
+    }, 0);
+  labelSumOut.textContent = `${Math.abs(withdrawal)}€`;
+};
+calcDisplayWithdrawl(account1.movements); */
 // user name
 console.log("------user name------");
 const creatUserNames = function (accs) {

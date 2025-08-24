@@ -349,3 +349,31 @@ console.log("----Array Method Discussion----");
   }, movements[0]);
   console.log(max);
 }
+
+{
+  ///////////////////////////////////////
+  // Method Chain filter > map > reduce
+  console.log("Method Chain filter > map > reduce");
+  const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+  const euroToUSD = 1.1;
+  const totalDeposit = movements
+    .filter(function (mov) {
+      return mov > 0;
+    })
+    .map(function (mov) {
+      return mov * euroToUSD;
+    })
+    .reduce(function (acc, mov) {
+      return acc + mov;
+    }, 0);
+  console.log(totalDeposit);
+  const allDeposit = movements
+    .filter(function (mov) {
+      return mov > 0;
+    })
+    .map(function (mov) {
+      return Math.trunc(mov * euroToUSD);
+    });
+  console.log(allDeposit);
+  console.log(...allDeposit);
+}
