@@ -377,3 +377,16 @@ console.log("----Array Method Discussion----");
   console.log(allDeposit);
   console.log(...allDeposit);
 }
+
+{
+  //Find Method
+  /* The find() method in JavaScript looks through an array and returns the first item that meets a specific condition you provide. If no item matches, it returns undefined. It skips any empty space in the array and doesn’t alter the original array. */
+  console.log("----Find Method----");
+  const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+  const firstWithdrawl = movements.find(function (mov) {
+    return mov < 0;
+  });
+  console.log(movements);
+  console.log(firstWithdrawl);
+  //console.log(accounts);
+}

@@ -158,3 +158,9 @@ const creatUserNames = function (accs) {
 //console.log(creatUserNames(accounts));
 creatUserNames(accounts);
 console.log(accounts);
+
+console.log("----Find Method----");
+const accountOwner = accounts.find(function (acc) {
+  return acc.owner === "Jessica Davis";
+});
+console.log(accountOwner);
