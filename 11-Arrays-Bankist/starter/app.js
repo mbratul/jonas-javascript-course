@@ -148,9 +148,7 @@ const creatUserNames = function (accs) {
     acc.username = acc.owner
       .toLowerCase()
       .split(" ")
-      .map(function (name) {
-        return name[0];
-      })
+      .map((name) => name[0])
       .join("");
   });
 };
@@ -164,3 +162,18 @@ const accountOwner = accounts.find(function (acc) {
   return acc.owner === "Jessica Davis";
 });
 console.log(accountOwner);
+
+// Log in Event Handler
+let currentAccount; // create a varibale for current account
+
+btnLogin.addEventListener("click", function (e) {
+  // Prevent form from Submitting
+  e.preventDefault();
+  currentAccount = accounts.find(function (acc) {
+    return acc.username === inputLoginUsername.value;
+  });
+  console.log(currentAccount);
+  if (currentAccount.pin === Number(inputLoginPin.value)) {
+    console.log("log in");
+  }
+});
