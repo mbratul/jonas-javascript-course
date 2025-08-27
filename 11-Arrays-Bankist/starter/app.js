@@ -79,11 +79,12 @@ const displayMovement = function (movements) {
 //displayMovement(account1.movements);
 
 // calculate total
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce(function (acc, mov) {
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce(function (acc, mov) {
     return acc + mov;
   }, 0);
-  labelBalance.textContent = `${balance}€`;
+
+  labelBalance.textContent = `${acc.balance}€`;
 };
 //calcDisplayBalance(account1.movements);
 //console.log(containerMovements.innerHTML);
@@ -163,6 +164,15 @@ const accountOwner = accounts.find(function (acc) {
 });
 console.log(accountOwner);
 
+// Update UI
+function updateUI(acc) {
+  //Display movements
+  displayMovement(acc.movements);
+  //Display balance
+  calcDisplayBalance(acc);
+  //Display summary
+  calcDisplaySummary(acc);
+}
 // Log in Event Handler
 let currentAccount; // create a varibale for current account
 
@@ -183,11 +193,33 @@ btnLogin.addEventListener("click", function (e) {
     //Clear Input Field
     inputLoginUsername.value = inputLoginPin.value = "";
     inputLoginPin.blur();
-    //Display movements
-    displayMovement(currentAccount.movements);
-    //Display balance
-    calcDisplayBalance(currentAccount.movements);
-    //Display summary
-    calcDisplaySummary(currentAccount);
+
+    //Update UI
+    updateUI(currentAccount);
   }
+});
+
+// transfer money event
+btnTransfer.addEventListener("click", function (e) {
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const receiverAccount = accounts.find(function (acc) {
+    return acc.username === inputTransferTo.value;
+  });
+  console.log(amount, receiverAccount);
+  if (
+    amount > 0 &&
+    receiverAccount &&
+    currentAccount.balance >= amount &&
+    receiverAccount?.username !== currentAccount.username
+  ) {
+    //console.log("transfer valid");
+    //Doing the transfer
+    currentAccount.movements.push(-amount);
+    receiverAccount.movements.push(amount);
+
+    //Update UI
+    updateUI(currentAccount);
+  }
+  inputTransferAmount.value = inputTransferTo.value = "";
 });
