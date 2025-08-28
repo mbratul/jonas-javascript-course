@@ -223,3 +223,55 @@ btnTransfer.addEventListener("click", function (e) {
   }
   inputTransferAmount.value = inputTransferTo.value = "";
 });
+
+//implementing loan button event
+btnLoan.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+  // 10% of requested amount
+  const loanCondition = currentAccount.movements.some(function (mov) {
+    return mov > amount / 10;
+  });
+  if (amount > 0 && loanCondition) {
+    //Add Movement
+    currentAccount.movements.push(amount);
+
+    //UpdateUI
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = "";
+});
+
+//implementation of find index method of close account button
+btnClose.addEventListener("click", function (e) {
+  e.preventDefault();
+  //console.log("delete");
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    //findIndex : Returns the index of the first element in the array where predicate is true, and -1 otherwise.
+    const index = accounts.findIndex(function (acc) {
+      return acc.username === currentAccount.username;
+    });
+    //console.log(index);
+
+    //Delete Account
+    accounts.splice(index, 1);
+
+    //Hide UI
+    containerApp.style.opacity = 0;
+  }
+  // clear the field
+  inputCloseUsername.value = inputClosePin.value = "";
+});
+
+//Evey method : Determines whether all the members of an array satisfy the specified test.
+// return true or false
+console.log("Every Method", account4);
+console.log(
+  account4.movements.every(function (mov) {
+    return mov > 0;
+  })
+);

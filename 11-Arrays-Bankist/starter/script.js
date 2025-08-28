@@ -390,3 +390,109 @@ console.log("----Array Method Discussion----");
   console.log(firstWithdrawl);
   //console.log(accounts);
 }
+{
+  //FindIndex Method
+  console.log("----Find Index Method----");
+  const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+  //Returns the index of the first element in the array where predicate is true, and -1 otherwise.
+  const index = movements.findIndex(function (mov) {
+    return mov > 500;
+  });
+  console.log(`Index position of the value is ${index}`);
+}
+{
+  //findLast findLastIndex method
+  console.log("----findLast findLastIndex method----");
+  const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+  const lastWithDrawl = movements.findLast(function (mov) {
+    return mov < 0;
+  });
+  console.log(movements);
+  console.log(lastWithDrawl);
+  const lastWithDrawlIndex = movements.findLastIndex(function (mov) {
+    return mov < 0;
+  });
+  console.log(
+    `last withdraw movements position was ${lastWithDrawlIndex}'th number`
+  );
+
+  const latestLargeMovementIndex = movements.findLastIndex(function (mov) {
+    return Math.abs(mov) > 1000;
+  });
+  console.log(
+    `Your latest large movements was ${latestLargeMovementIndex} movements ago`
+  );
+  console.log(
+    `Your latest large movements was ${
+      movements.length - latestLargeMovementIndex - 1
+    } movements ago`
+  );
+}
+{
+  // Some Method
+  console.log("----Some method----");
+  const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+  //Determines whether an array includes a certain element, returning true or false as appropriate.
+  //Equality
+  const exactDeposit = movements.includes(-130);
+  console.log(
+    `find the exact number of an array ${exactDeposit}`,
+    exactDeposit
+  );
+  //Determines whether the specified callback function returns true for any element of an array.
+  //Condition
+  const anyDeposit = movements.some(function (mov) {
+    return mov > 1500;
+  });
+  console.log(`find any deposit of an array ${anyDeposit}`, anyDeposit);
+}
+
+{
+  // Every Method
+  console.log("----Every method----");
+  const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+  //Every : Determines whether all the members of an array satisfy the specified test.
+  //return true or false
+  console.log(
+    movements.every(function (mov) {
+      return mov > 0;
+    })
+  );
+}
+
+{
+  const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+  //seperate callback for deposite amount
+  console.log("----seperate callback for deposite amount----");
+  const deposit = function (mov) {
+    return mov > 0;
+  };
+  console.log(movements);
+  console.log(movements.some(deposit));
+  console.log(movements.every(deposit));
+  console.log(movements.filter(deposit));
+  console.log(movements.map(deposit));
+  console.log(movements.find(deposit));
+  console.log(movements.findLast(deposit));
+  console.log(movements.findIndex(deposit));
+  console.log(movements.findLastIndex(deposit));
+}
+{
+  const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+  //seperate callback for wothdraw amount
+  console.log("----seperate callback for wothdraw amount----");
+  const withdraw = function (mov) {
+    return mov < 0;
+  };
+  console.log(movements);
+  console.log(movements.some(withdraw));
+  console.log(movements.every(withdraw));
+  console.log(movements.filter(withdraw));
+  console.log(movements.map(withdraw));
+  console.log(movements.find(withdraw));
+  console.log(movements.findLast(withdraw));
+  console.log(movements.findIndex(withdraw));
+  console.log(movements.findLastIndex(withdraw));
+}
