@@ -496,3 +496,55 @@ console.log("----Array Method Discussion----");
   console.log(movements.findIndex(withdraw));
   console.log(movements.findLastIndex(withdraw));
 }
+{
+  // flat Method
+  console.log("----flat Method---");
+  const arr = [[1, 2, 3], [4, 5, 6, 7], 8, 9];
+  //The maximum recursion depth
+  console.log(arr.flat());
+  const arrDeeper = [
+    [1, [2, 3]],
+    [
+      [4, 5],
+      [6, 7],
+    ],
+    8,
+    9,
+  ];
+  // flat method only work for one level nested
+  console.log(arrDeeper.flat());
+  console.log(arrDeeper.flat(2));
+}
+{
+  // flat Map Method
+  console.log("----flat Map Method---");
+
+  const arrDeeper = [
+    [1, [2, 3]],
+    [
+      [4, 5],
+      [6, 7],
+    ],
+    8,
+    9,
+  ];
+  function deepFlat(arr) {
+    return arr.flatMap(function (val) {
+      if (Array.isArray(val)) {
+        return deepFlat(val);
+      } else {
+        return val;
+      }
+    });
+  }
+
+  var flatArray = deepFlat(arrDeeper);
+  var sum = flatArray.reduce(function (a, b) {
+    return a + b;
+  }, 0);
+
+  console.log(flatArray); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  console.log(sum); // 45
+
+  console.log(arrDeeper);
+}
