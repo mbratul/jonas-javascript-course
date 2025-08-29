@@ -548,3 +548,44 @@ console.log("----Array Method Discussion----");
 
   console.log(arrDeeper);
 }
+{
+  ///////////////////////////////////////
+  // sorting arrays
+  console.log("-----sorting arrays mutable method-----");
+
+  //strings
+  const owners = ["jonas", "mitul", "adam", "zack", "ratul", "ovi"];
+  //Sorts an array in place. This method mutates the array and returns a reference to the same array.
+  console.log(owners.sort());
+
+  //numbers
+  const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+  console.log(movements);
+  //console.log(movements.sort());
+  console.log("Ascending Order");
+  //Ascending
+  movements.sort(function (a, b) {
+    if (a > b) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
+  console.log(movements);
+  //arrow function in one line
+  movements.sort((a, b) => a - b);
+  console.log(movements);
+  //Descending
+  console.log("Descending Order");
+  movements.sort(function (a, b) {
+    if (a > b) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+  console.log(movements);
+  //arrow function in one line
+  movements.sort((a, b) => b - a);
+  console.log(movements);
+}
