@@ -296,3 +296,78 @@ labelBalance.addEventListener("click", function () {
   });
   console.log(movmentUI);
 });
+
+///////////////////////////////////////
+// Array Methods Practice
+// 1. total balance of all 4 accounts movements
+/* const bankDepositSum = accounts
+  .map(function (acc) {
+    return acc.movements;
+  })
+  .flat(); */
+const bankDepositSum = accounts
+  .flatMap(function (acc) {
+    return acc.movements;
+  })
+  .filter(function (mov) {
+    return mov > 0;
+  })
+  .reduce(function (acc, curr) {
+    return acc + curr;
+  }, 0);
+console.log(bankDepositSum);
+
+//2. find movements greater then 1000
+const numDeposits1000 = accounts
+  .flatMap(function (acc) {
+    return acc.movements;
+  })
+  .filter(function (mov) {
+    return mov >= 1000;
+  }).length;
+console.log(numDeposits1000);
+
+//2. find movements greater then 1000 by reduce method
+const numDeposits1000byReduce = accounts
+  .flatMap(function (acc) {
+    return acc.movements;
+  })
+  .reduce(function (count, curr) {
+    return curr >= 1000 ? count + 1 : count;
+  }, 0);
+console.log(numDeposits1000byReduce);
+
+//3 Sum toatl dep[osit and withdrawl
+const sumsDepositWithdrawls = accounts
+  .flatMap(function (acc) {
+    return acc.movements;
+  })
+  .reduce(
+    function (sums, curr) {
+      //curr > 0 ? (sums.deposit += curr) : (sums.withdrawal += curr);
+      sums[curr > 0 ? "deposit" : "withdrawal"] += curr;
+      return sums;
+    },
+    { deposit: 0, withdrawal: 0 }
+  );
+console.log(sumsDepositWithdrawls);
+const { deposit, withdrawal } = sumsDepositWithdrawls;
+console.log(deposit, withdrawal);
+
+//4. title case
+// this is a test > This Is a Test
+const convertTitleCase = function (title) {
+  const exceptions = ["a", "an", "the", "but", "or", "on", "in", "with"];
+  const titleCase = title
+    .toLowerCase()
+    .split(" ")
+    .map(function (word) {
+      return exceptions.includes(word)
+        ? word
+        : word[0].toUpperCase() + word.slice(1);
+    })
+    .join(" ");
+  return titleCase;
+};
+console.log(convertTitleCase("this is a test doc"));
+console.log(convertTitleCase("this is a test but not an apple with on doc"));
