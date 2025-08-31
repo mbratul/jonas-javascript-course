@@ -72,7 +72,7 @@ const displayMovement = function (movements, sort = false) {
           <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-          <div class="movements__value">${mov}</div>
+          <div class="movements__value">${mov}€</div>
         </div>
     `;
     containerMovements.insertAdjacentHTML("afterbegin", html);
@@ -285,4 +285,14 @@ btnSort.addEventListener("click", function (e) {
   e.preventDefault();
   displayMovement(currentAccount.movements, !sorted);
   sorted = !sorted;
+});
+
+//collecting Node list data of transaction
+
+labelBalance.addEventListener("click", function () {
+  let movementValueElem = document.querySelectorAll(".movements__value");
+  const movmentUI = Array.from(movementValueElem, function (el) {
+    return Number(el.textContent.replace("€", ""));
+  });
+  console.log(movmentUI);
 });

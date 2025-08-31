@@ -589,3 +589,52 @@ console.log("----Array Method Discussion----");
   movements.sort((a, b) => b - a);
   console.log(movements);
 }
+{
+  ///////////////////////////////////////
+  // Array Grouping
+  const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+  console.log("----Array Grouping----");
+  const groupedMovments = Object.groupBy(movements, function (movment) {
+    movment > 0 ? "Deposit" : "Withdrawls";
+  });
+  console.log(groupedMovments);
+  //old browser can not support this feature. don't worry about this
+}
+{
+  ///////////////////////////////////////
+  // Creating Different ways of array
+  console.log("Creating Different ways of array");
+  console.log([1, 2, 3, 4, 5, 6, 7, 8]);
+  console.log(new Array(1, 2, 3, 4, 5, 6, 7, 8));
+  //empty array
+  const emtyArray = new Array(7);
+  console.log(emtyArray); //emty array
+  //array fill method
+  console.log(emtyArray.fill(5)); //use fill method to add value in an emty array
+  console.log(emtyArray.fill(4, 3, 5));
+  const fillArr = [1, 2, 3, 5, 6, 4, 9, 4, 6];
+  console.log(fillArr.fill(24, 3, 7));
+
+  //array from method
+  //Creates an array from an iterable object.
+  const fromArr = Array.from({ length: 7 }, function () {
+    return 1;
+  });
+  console.log(fromArr);
+  const fromCountignArr = Array.from({ length: 7 }, function (curr, i) {
+    return i + 1;
+  });
+  console.log(fromCountignArr);
+  const myArr = [1, 2, 3, 5, 6, 4, 9, 4, 6];
+  const countArr = Array.from(myArr, function (i) {
+    return i * 4;
+  });
+  const ascendingSort = countArr.sort(function (a, b) {
+    return a - b;
+  });
+  const descendingSort = countArr.sort(function (a, b) {
+    return b - a;
+  });
+  console.log(ascendingSort);
+  console.log(descendingSort);
+}
