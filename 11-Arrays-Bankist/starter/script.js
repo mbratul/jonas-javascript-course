@@ -638,3 +638,36 @@ console.log("----Array Method Discussion----");
   console.log(ascendingSort);
   console.log(descendingSort);
 }
+{
+  ///////////////////////////////////////
+  // Non-Destructive Alternatives: toReversed, toSorted, toSpliced, with
+  const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+  console.log(
+    "----Non-Destructive Alternatives: toReversed, toSorted, toSpliced, with----"
+  );
+  console.log(movements);
+  console.log("reverse mutable array");
+  //Reverses the elements in an array in place. This method mutates the array and returns a reference to the same array.
+  const reverseMov = movements.reverse();
+  const sliceReverse = movements.slice().reverse();
+  console.log(reverseMov);
+  console.log(sliceReverse);
+
+  const torReverse = movements.toReversed();
+  console.log(torReverse);
+
+  //toSorted (sorted)
+  const toSorted = movements.toSorted();
+  console.log(toSorted);
+
+  //toSplice (splice)
+  const toSplice = movements.toSpliced(4, 2, 450, 640, 750);
+  console.log(toSplice);
+
+  //with method
+  const withArr = movements.with(2, 2500);
+  console.log(withArr);
+
+  //original array
+  console.log(movements);
+}
