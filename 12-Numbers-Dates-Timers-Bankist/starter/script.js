@@ -23,7 +23,7 @@ const account1 = {
     "2020-05-08T14:11:59.604Z",
     "2020-05-27T17:01:17.194Z",
     "2020-07-11T23:36:17.929Z",
-    "2020-07-12T10:51:36.790Z",
+    "2025-08-28T10:51:36.790Z",
   ],
   currency: "EUR",
   locale: "pt-PT", // de-DE
@@ -80,6 +80,24 @@ const inputClosePin = document.querySelector(".form__input--pin");
 
 /////////////////////////////////////////////////
 // Functions
+const formatMovementDate = function (date) {
+  const calcDaysPassed = function (day1, day2) {
+    return Math.round(Math.abs((day2 - day1) / (1000 * 60 * 60 * 24)));
+  };
+  const daysPassed = calcDaysPassed(new Date(), date);
+  console.log(daysPassed, "hello dates");
+
+  if (daysPassed === 0) return `Today`;
+  if (daysPassed === 1) return `Yesterday`;
+  if (daysPassed < 7) return `${daysPassed} days ago`;
+  else {
+    const day = `${date.getDate()}`.padStart(2, 0);
+    const month = `${date.getMonth() + 1}`.padStart(2, 0);
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
+  }
+};
 
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = "";
@@ -102,11 +120,7 @@ const displayMovements = function (acc, sort = false) {
 
     const date = new Date(movementDate);
 
-    const day = `${date.getDate()}`.padStart(2, 0);
-    const month = `${date.getMonth() + 1}`.padStart(2, 0);
-    const year = date.getFullYear();
-
-    const displayDate = `${day}/${month}/${year}`;
+    const displayDate = formatMovementDate(date);
 
     const html = `
       <div class="movements__row">
@@ -499,4 +513,19 @@ btnSort.addEventListener("click", function (e) {
 
   future.setFullYear(2035);
   console.log(future);
+}
+{
+  /////////////////////////////////////////////////
+  //Operation with Date
+  console.log("----Operation with Date----");
+  const future = new Date(2034, 10, 25, 4, 15);
+  console.log(Number(future));
+  console.log(+future); // plus operator also an alternative of Number() method
+
+  // subtract two dates
+  const calcDaysPassed = function (day1, day2) {
+    return Math.abs((day2 - day1) / (1000 * 60 * 60 * 24));
+  };
+  const day1 = calcDaysPassed(new Date(2034, 10, 25), new Date(2034, 11, 20));
+  console.log(day1);
 }
