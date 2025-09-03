@@ -80,22 +80,24 @@ const inputClosePin = document.querySelector(".form__input--pin");
 
 /////////////////////////////////////////////////
 // Functions
-const formatMovementDate = function (date) {
+const formatMovementDate = function (date, locale) {
   const calcDaysPassed = function (day1, day2) {
     return Math.round(Math.abs((day2 - day1) / (1000 * 60 * 60 * 24)));
   };
   const daysPassed = calcDaysPassed(new Date(), date);
-  console.log(daysPassed, "hello dates");
+  //console.log(daysPassed, "hello dates");
 
   if (daysPassed === 0) return `Today`;
   if (daysPassed === 1) return `Yesterday`;
   if (daysPassed < 7) return `${daysPassed} days ago`;
+  // else {
+  //   const day = `${date.getDate()}`.padStart(2, 0);
+  //   const month = `${date.getMonth() + 1}`.padStart(2, 0);
+  //   const year = date.getFullYear();
+  //   return `${day}/${month}/${year}`;
+  // }
   else {
-    const day = `${date.getDate()}`.padStart(2, 0);
-    const month = `${date.getMonth() + 1}`.padStart(2, 0);
-    const year = date.getFullYear();
-
-    return `${day}/${month}/${year}`;
+    return new Intl.DateTimeFormat(locale).format(date);
   }
 };
 
@@ -120,7 +122,7 @@ const displayMovements = function (acc, sort = false) {
 
     const date = new Date(movementDate);
 
-    const displayDate = formatMovementDate(date);
+    const displayDate = formatMovementDate(date, acc.locale);
 
     const html = `
       <div class="movements__row">
@@ -194,7 +196,19 @@ currentAccount = account1;
 updateUI(currentAccount);
 containerApp.style.opacity = 100;
 
-//day/month/year
+//Experimenting API
+/* const now = new Date();
+const options = {
+  hour: "numeric",
+  minute: "numeric",
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  weekday: "long",
+};
+const localTime = navigator.language;
+console.log(localTime);
+labelDate.textContent = new Intl.DateTimeFormat(localTime, options).format(now); */
 
 btnLogin.addEventListener("click", function (e) {
   // Prevent form from submitting
@@ -213,13 +227,30 @@ btnLogin.addEventListener("click", function (e) {
     containerApp.style.opacity = 100;
 
     //Create current Date and Time
-    const now = new Date();
+    /* const now = new Date();
     const day = `${now.getDate()}`.padStart(2, 0);
     const month = `${now.getMonth() + 1}`.padStart(2, 0);
     const year = now.getFullYear();
     const hours = `${now.getHours()}`.padStart(2, 0);
     const minutes = `${now.getMinutes()}`.padStart(2, 0);
-    labelDate.textContent = `${day}/${month}/${year}, ${hours}:${minutes}`;
+    labelDate.textContent = `${day}/${month}/${year}, ${hours}:${minutes}`; */
+
+    //Experimenting Current Date Time API
+    const now = new Date();
+    const options = {
+      hour: "numeric",
+      minute: "numeric",
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+      weekday: "long",
+    };
+    // const localTime = navigator.language;
+    // console.log(localTime);
+    const localTime = currentAccount.locale;
+    labelDate.textContent = new Intl.DateTimeFormat(localTime, options).format(
+      now
+    );
 
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = "";
