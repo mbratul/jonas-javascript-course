@@ -27,7 +27,7 @@ messageDiv.classList.add("cookie-message");
 messageDiv.innerHTML = `We use cookied for improved functionality and analytics <button class="btn btn-close-cookie">Got it!</button>`;
 
 //Inserts nodes before the first child of node, while replacing strings in nodes with equivalent Text nodes.
-headerClass.prepend(messageDiv);
+//headerClass.prepend(messageDiv);
 
 //Inserts nodes after the last child of node, while replacing strings in nodes with equivalent Text nodes.
 headerClass.append(messageDiv);
@@ -42,3 +42,45 @@ const btncloseCookie = document.querySelector(".btn-close-cookie");
 btncloseCookie.addEventListener("click", function () {
   messageDiv.remove();
 });
+
+//Styling an Element
+//this style are inline css style
+messageDiv.style.backgroundColor = "#440066";
+messageDiv.style.width = "120%";
+
+console.log(getComputedStyle(messageDiv));
+console.log(getComputedStyle(messageDiv).height);
+const computeHeight = (messageDiv.style.height =
+  Number.parseFloat(getComputedStyle(messageDiv).height) + 40 + "px");
+console.log(computeHeight);
+
+//change css style by setProperty method
+document.documentElement.style.setProperty("--color-primary", "orangered");
+
+//Access Attributes
+const logo = document.querySelector(".nav__logo");
+console.log(logo.alt);
+logo.alt = "Beautiful Minimalist Logo";
+console.log(logo.width);
+console.log(logo.height);
+console.log(logo.id);
+console.log(logo.className);
+
+// Non Standard Attribute
+console.log(logo.src); //absolute version
+console.log(logo.getAttribute("src")); //relative version
+
+logo.setAttribute("height", "10%");
+
+const link = document.querySelector(".nav__link--btn");
+console.log(link.href); //absolute value
+console.log(link.getAttribute("href")); //relative value
+
+//Data Attribute
+console.log(logo.dataset.versionNumber);
+
+//Classe
+logo.classList.add("c");
+logo.classList.remove("c");
+logo.classList.toggle("c");
+logo.classList.contains("c");
