@@ -42,4 +42,29 @@ btnScroll.addEventListener("click", function (e) {
 });
 
 ////////////////////////////
-//event delegation by smooth navigation
+//smooth page navigation
+/* const linkElem = document.querySelectorAll(".nav__link");
+linkElem.forEach(function (el) {
+  el.addEventListener("click", function (e) {
+    e.preventDefault();
+    const hrefID = this.getAttribute("href");
+    document.querySelector(hrefID).scrollIntoView({ behavior: "smooth" });
+    console.log(hrefID);
+  });
+}); */
+
+////////////////////////////
+//Event Delegation
+// 1. Add Event listener to the parent element
+// 2. Determine what element originated the event
+const ulElem = document.querySelector(".nav__links");
+ulElem.addEventListener("click", function (e) {
+  //console.log(e.target);
+  e.preventDefault();
+  //Matching Strategy
+  if (e.target.classList.contains("nav__link")) {
+    const hrtefID = e.target.getAttribute("href");
+    document.querySelector(hrtefID).scrollIntoView({ behavior: "smooth" });
+    //console.log("link");
+  }
+});
