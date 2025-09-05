@@ -57,3 +57,10 @@ body {
   padding: 1rem;
   border: 1px solid black;
 }
+h1 {
+  font-size: 5.5rem;
+  line-height: 1.35;
+}
+.highlight {
+  position: relative;
+}

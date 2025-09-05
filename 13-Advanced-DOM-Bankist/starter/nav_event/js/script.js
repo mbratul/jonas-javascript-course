@@ -1,5 +1,25 @@
 /* JavaScript Goes Here */
 "use strict";
+
+{
+  ////////////////////////////
+  //mlouse enter event
+  const h1 = document.querySelector("h1");
+  const alertH1 = function (e) {
+    alert("addEventlistener: great you are reading the heading");
+    //h1.removeEventListener("mouseenter", alertH1);
+  };
+  h1.addEventListener("mouseenter", alertH1);
+
+  setTimeout(function (e) {
+    h1.removeEventListener("mouseenter", alertH1);
+  }, 3000);
+
+  // it's an old scool way
+  // h1.onmouseenter = function (e) {
+  //   alert("onmouseenter: great you are reading the heading");
+  // };
+}
 //Event Propagation effect in menu bar
 
 //Random Color Generator
@@ -21,16 +41,16 @@ ulElem.addEventListener("click", function (e) {
   this.style.backgroundColor = randomColor();
 });
 
-liElem.forEach(function (li) {
-  li.addEventListener("click", function (e) {
+liElem.forEach(function (el) {
+  el.addEventListener("click", function (e) {
     console.log("li", e.target, e.currentTarget);
     console.log(e.currentTarget === this);
     this.style.backgroundColor = randomColor();
   });
 });
 
-anchorElem.forEach(function (a) {
-  a.addEventListener("click", function (e) {
+anchorElem.forEach(function (el) {
+  el.addEventListener("click", function (e) {
     console.log("a", e.target, e.currentTarget);
     console.log(e.currentTarget === this);
     this.style.backgroundColor = randomColor();
