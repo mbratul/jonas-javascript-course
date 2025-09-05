@@ -32,3 +32,12 @@ document.addEventListener("keydown", function (e) {
     closeModal();
   }
 });
+
+////////////////////////////
+//smooth scroll down to section
+const btnScroll = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
+
+btnScroll.addEventListener("click", function (e) {
+  section1.scrollIntoView({ behavior: "smooth" });
+});

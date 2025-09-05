@@ -48,14 +48,14 @@ btncloseCookie.addEventListener("click", function () {
 messageDiv.style.backgroundColor = "#440066";
 messageDiv.style.width = "120%";
 
-console.log(getComputedStyle(messageDiv));
+//console.log(getComputedStyle(messageDiv));
 console.log(getComputedStyle(messageDiv).height);
 const computeHeight = (messageDiv.style.height =
   Number.parseFloat(getComputedStyle(messageDiv).height) + 40 + "px");
 console.log(computeHeight);
 
 //change css style by setProperty method
-document.documentElement.style.setProperty("--color-primary", "orangered");
+//document.documentElement.style.setProperty("--color-primary", "orangered");
 
 //Access Attributes
 const logo = document.querySelector(".nav__logo");
@@ -84,3 +84,62 @@ logo.classList.add("c");
 logo.classList.remove("c");
 logo.classList.toggle("c");
 logo.classList.contains("c");
+
+////////////////////////////
+//smooth scroll down to section
+//old scool way of scroll down any object
+/* {
+  const btnScroll = document.querySelector(".btn--scroll-to");
+  const section1 = document.querySelector("#section--1");
+
+    btnScroll.addEventListener("click", function (e) { 
+    const s1cord = section1.getBoundingClientRect();
+    console.log(s1cord);
+    console.log(e.target.getBoundingClientRect());
+    console.log(
+      "Current Scroll position of x/y",
+      window.pageXOffset,
+      pageYOffset
+    );
+    console.log(
+      "height/width viewport",
+      document.documentElement.clientHeight,
+      document.documentElement.clientWidth
+    );
+
+    //scrolling
+    // window.scrollTo(
+    //   s1cord.left + window.pageXOffset,
+    //   s1cord.top + window.pageYOffset
+    // );
+    // window.scrollTo({
+    //   left: s1cord.left + window.pageXOffset,
+    //   top: s1cord.top + window.pageYOffset,
+    //   behavior: "smooth",
+    // });
+    section1.scrollIntoView({ behavior: "smooth" });
+  }); 
+} */
+{
+  ////////////////////////////
+  //mlouse enter event
+  const h1 = document.querySelector("h1");
+  const alertH1 = function (e) {
+    alert("addEventlistener: great you are reading the heading");
+    //h1.removeEventListener("mouseenter", alertH1);
+  };
+  h1.addEventListener("mouseenter", alertH1);
+
+  setTimeout(function (e) {
+    h1.removeEventListener("mouseenter", alertH1);
+  }, 3000);
+
+  // it's an old scool way
+  // h1.onmouseenter = function (e) {
+  //   alert("onmouseenter: great you are reading the heading");
+  // };
+}
+{
+  ////////////////////////////
+  //Event Propagation: Bubbling and Capturing
+}
