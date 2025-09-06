@@ -68,3 +68,42 @@ ulElem.addEventListener("click", function (e) {
     //console.log("link");
   }
 });
+
+////////////////////////////
+//Building a Tabbed Component
+
+//Tabbed Component
+const tabs = document.querySelectorAll(".operations__tab");
+const tabsContainer = document.querySelector(".operations__tab-container");
+const tabsContent = document.querySelectorAll(".operations__content");
+
+//add EventListener to tab node
+/* tabs.forEach(function (el) {
+  el.addEventListener("click", function (e) {
+    console.log("tab");
+  });
+}); */
+// it's a bad practice so don't use this instead use parent element
+tabsContainer.addEventListener("click", function (e) {
+  const clicked = e.target.closest(".operations__tab");
+  //console.log(clicked);
+
+  //Guard Claused
+  if (!clicked) return;
+
+  //remove active classes for both tab and content area
+  tabs.forEach(function (el) {
+    el.classList.remove(".operations__tab--active");
+  });
+  tabsContent.forEach(function (el) {
+    el.classList.remove("operations__content--active");
+  });
+  //active tab
+  clicked.classList.add(".operations__tab--active");
+
+  //activated content area
+  //console.log(clicked.dataset.tab);
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add("operations__content--active");
+});
