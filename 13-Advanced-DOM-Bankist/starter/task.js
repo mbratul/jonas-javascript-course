@@ -125,3 +125,52 @@ logo.classList.contains("c");
   ////////////////////////////
   //Event Propagation: Bubbling and Capturing
 }
+{
+  ////////////////////////////
+  //DOM Traversing
+  //query selector find the child element in DOM Tree
+  const h1Elem = document.querySelector("h1");
+
+  //Going downwards: child
+  console.log(h1Elem.querySelectorAll(".highlight"));
+  console.log(h1Elem.childNodes);
+  console.log(h1Elem.children);
+  //h1Elem.firstElementChild.style.color = "red";
+  //h1Elem.lastElementChild.style.color = "red";
+  console.log(h1Elem.firstElementChild);
+  console.log(h1Elem.lastElementChild);
+}
+{
+  const h1Elem = document.querySelector("h1");
+  //Going Upward : parent
+  console.log(h1Elem.parentNode);
+  console.log(h1Elem.parentElement);
+  /*Closest Method Definition:  The closest() method of the element interface is used to traverse the element and its parents in the HTML Document Tree until it finds the first node that matches the selector string that is provided. */
+  //Closest method find parent in the DOM Tree
+  h1Elem.closest("body").style.background = "white";
+}
+{
+  // Going Sideways : Finding Siblings
+  const h1Elem = document.querySelector("h1");
+  // most of the time we working on elements
+  console.log(h1Elem.previousElementSibling);
+  console.log(h1Elem.nextElementSibling);
+
+  //same for Nodes
+  console.log(h1Elem.previousSibling);
+  console.log(h1Elem.nextSibling);
+}
+{
+  //accessing all siblings of the parent element
+  const h1Elem = document.querySelector("h1");
+  console.log(h1Elem.parentElement.children);
+  //it provides a html collect not an array but it can iterable by using spread operator
+  const h1SiblingElem = h1Elem.parentElement.children;
+  //destructure the collection and implement style using foreach method
+  [...h1SiblingElem].forEach(function (el) {
+    if (el !== h1Elem) {
+      // el.style.transform = "scale(0.5)";
+      el.style.color = "red";
+    }
+  });
+}
