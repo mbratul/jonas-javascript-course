@@ -136,3 +136,51 @@ nav.addEventListener("mouseout", function (ev) {
 });
 // the callback function also replced by using bind method. need to study first bind method then apply it.
 // right now it's ok here
+
+////////////////////////////
+//Sticky Navigation menu
+//It's not a good way to sticky nav menu the better way is Intersection Ovserver API
+/* const initalCordinate = section1.getBoundingClientRect();
+console.log(initalCordinate);
+window.addEventListener("scroll", function () {
+  //console.log(window.scrollY);
+  if (window.scrollY > initalCordinate.top) {
+    nav.classList.add("sticky");
+  } else {
+    nav.classList.remove("sticky");
+  }
+}); */
+////////////////////////////
+//Sticky Navigation menu using Intersection Ovserver API
+/* const observerCallback = function (entries, observe) {
+  entries.forEach(function (entry) {
+    console.log(entry);
+  });
+};
+const observerOptions = {
+  root: null,
+  threshold: [0, 0.2],
+};
+const observer = new IntersectionObserver(observerCallback, observerOptions);
+observer.observe(section1); */
+
+const header = document.querySelector(".header");
+const navHeight = nav.getBoundingClientRect().height;
+//console.log(navHeight);
+const stickynav = function (entries) {
+  const [entry] = entries;
+  //console.log(entry);
+  // same condition > entry.isIntersecting === false
+  if (!entry.isIntersecting) {
+    nav.classList.add("sticky");
+  } else {
+    nav.classList.remove("sticky");
+  }
+};
+const stickyoptions = {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`,
+};
+const headerObserver = new IntersectionObserver(stickynav, stickyoptions);
+headerObserver.observe(header);
