@@ -9,6 +9,10 @@ const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
 const btnScroll = document.querySelector(".btn--scroll-to");
 const section1 = document.querySelector("#section--1");
+//Tabbed Component
+const tabs = document.querySelectorAll(".operations__tab");
+const tabsContainer = document.querySelector(".operations__tab-container");
+const tabsContent = document.querySelectorAll(".operations__content");
 
 const openModal = function (e) {
   e.preventDefault();
@@ -72,20 +76,16 @@ ulElem.addEventListener("click", function (e) {
 ////////////////////////////
 //Building a Tabbed Component
 
-//Tabbed Component
-const tabs = document.querySelectorAll(".operations__tab");
-const tabsContainer = document.querySelector(".operations__tab-container");
-const tabsContent = document.querySelectorAll(".operations__content");
-
 //add EventListener to tab node
+// it's a bad practice so don't use this instead use parent element
 /* tabs.forEach(function (el) {
   el.addEventListener("click", function (e) {
     console.log("tab");
   });
 }); */
-// it's a bad practice so don't use this instead use parent element
-tabsContainer.addEventListener("click", function (e) {
-  const clicked = e.target.closest(".operations__tab");
+// use parent element for tab event
+tabsContainer.addEventListener("click", function (ev) {
+  const clicked = ev.target.closest(".operations__tab");
   //console.log(clicked);
 
   //Guard Claused
@@ -93,7 +93,7 @@ tabsContainer.addEventListener("click", function (e) {
 
   //remove active classes for both tab and content area
   tabs.forEach(function (el) {
-    el.classList.remove(".operations__tab--active");
+    el.classList.remove("operations__tab--active");
   });
   tabsContent.forEach(function (el) {
     el.classList.remove("operations__content--active");
@@ -107,3 +107,32 @@ tabsContainer.addEventListener("click", function (e) {
     .querySelector(`.operations__content--${clicked.dataset.tab}`)
     .classList.add("operations__content--active");
 });
+
+////////////////////////////
+//Menu Fade animation
+const nav = document.querySelector(".nav");
+
+// refactoring the code implement DRY principle
+const handleHover = function (ev, opacity) {
+  if (ev.target.classList.contains("nav__link")) {
+    const link = ev.target;
+    const siblings = link.closest(".nav").querySelectorAll(".nav__link");
+    const logo = link.closest(".nav").querySelector("img");
+
+    siblings.forEach(function (el) {
+      if (el !== link) {
+        el.style.opacity = opacity;
+      }
+    });
+    logo.style.opacity = opacity;
+  }
+};
+nav.addEventListener("mouseover", function (ev) {
+  handleHover(ev, 0.5);
+});
+
+nav.addEventListener("mouseout", function (ev) {
+  handleHover(ev, 1);
+});
+// the callback function also replced by using bind method. need to study first bind method then apply it.
+// right now it's ok here
