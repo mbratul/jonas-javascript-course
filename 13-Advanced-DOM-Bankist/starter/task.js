@@ -170,7 +170,7 @@ logo.classList.contains("c");
   [...h1SiblingElem].forEach(function (el) {
     if (el !== h1Elem) {
       // el.style.transform = "scale(0.5)";
-      el.style.color = "red";
+      //el.style.color = "red";
     }
   });
 }
