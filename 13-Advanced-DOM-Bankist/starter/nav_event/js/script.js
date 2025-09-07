@@ -86,3 +86,55 @@ anchorElem.forEach(function (el) {
     //e.stopPropagation();
   });
 });
+{
+  ////////////////////////////
+  //Slide Content
+  const slieds = document.querySelectorAll(".slide");
+  const btnLeftElem = document.querySelector(".slider__btn--left");
+  const btnRightElem = document.querySelector(".slider__btn--right");
+
+  let currentSlide = 0;
+  const maxSlide = slieds.length - 1;
+
+  /* const slider = document.querySelector(".slider");
+slider.style.transform = "scale(0.3) translateX(-1200px)";
+slider.style.overflow = "visible"; */
+
+  const gotoSlide = function (slide) {
+    slieds.forEach(function (s, i) {
+      s.style.transform = `translateX(${100 * (i - slide)}%)`;
+    });
+  };
+  gotoSlide(0);
+  //Next Slide
+
+  const nextSlide = function () {
+    if (currentSlide === maxSlide) {
+      currentSlide = 0;
+    } else {
+      currentSlide++;
+    }
+    gotoSlide(currentSlide);
+  };
+  const previousSlide = function () {
+    if (currentSlide === 0) {
+      currentSlide = maxSlide;
+    } else {
+      currentSlide--;
+    }
+    gotoSlide(currentSlide);
+  };
+  btnRightElem.addEventListener("click", nextSlide);
+  btnLeftElem.addEventListener("click", previousSlide);
+
+  document.addEventListener("keydown", function (e) {
+    //console.log(e);
+    if (e.key === "ArrowLeft") {
+      previousSlide();
+    } else if (e.key === "ArrowRight") {
+      nextSlide();
+    } else {
+      alert("use only left and right key");
+    }
+  });
+}

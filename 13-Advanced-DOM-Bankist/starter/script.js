@@ -212,7 +212,7 @@ const sectionOvserver = new IntersectionObserver(revealSection, sectionOptions);
 //extract nodelist
 allSections.forEach(function (section) {
   sectionOvserver.observe(section);
-  section.classList.add("section--hidden");
+  // section.classList.add("section--hidden");
 });
 ////////////////////////////
 //Lazy Loading Image
