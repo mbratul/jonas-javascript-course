@@ -293,3 +293,13 @@ document.addEventListener("keydown", function (e) {
   e.key === "ArrowLeft" && previousSlide();
   e.key === "ArrowRight" && nextSlide();
 });
+
+////////////////////////////
+//DOM Content Loaded
+
+document.addEventListener("DOMContentLoaded", function (e) {
+  console.log(e);
+});
+window.addEventListener("click", function (e) {
+  console.log(e);
+});
