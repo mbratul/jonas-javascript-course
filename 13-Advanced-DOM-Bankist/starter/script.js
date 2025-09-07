@@ -152,6 +152,8 @@ window.addEventListener("scroll", function () {
 }); */
 ////////////////////////////
 //Intersection Ovserver API Overview
+// URL : https://www.geeksforgeeks.org/javascript/introduction-to-intersection-observer/
+/* Definition:  Intersection Observer is an API that is used to detect the interaction of a target element with its's ancestor element or the document viewport. For example, if we want to detect if some element is visible in the viewport we can use this API for that purpose. */
 /* const observerCallback = function (entries, observe) {
   entries.forEach(function (entry) {
     console.log(entry);
@@ -191,14 +193,15 @@ headerObserver.observe(header);
 const allSections = document.querySelectorAll(".section");
 
 const revealSection = function (entries, observer) {
-  const [entry] = entries;
-  //console.log(entry);
+  //console.log(entries);
+  //const [entry] = entries;
+  entries.forEach(function (entry) {
+    //Guard Clause
+    if (!entry.isIntersecting) return;
 
-  //Guard Clause
-  if (!entry.isIntersecting) return;
-
-  entry.target.classList.remove("section--hidden");
-  observer.unobserve(entry.target);
+    entry.target.classList.remove("section--hidden");
+    observer.unobserve(entry.target);
+  });
 };
 const sectionOptions = {
   root: null,
@@ -210,4 +213,30 @@ const sectionOvserver = new IntersectionObserver(revealSection, sectionOptions);
 allSections.forEach(function (section) {
   sectionOvserver.observe(section);
   section.classList.add("section--hidden");
+});
+////////////////////////////
+//Lazy Loading Image
+const imageTarget = document.querySelectorAll("img[data-src]");
+//console.log(imageTarget);
+const lazyLoadImage = function (entries, observe) {
+  const [entry] = entries;
+  //console.log(entry);
+  if (!entry.isIntersecting) return;
+
+  //Replace src with data-src
+  entry.target.src = entry.target.dataset.src;
+  entry.target.addEventListener("load", function () {
+    entry.target.classList.remove("lazy-img");
+  });
+  observe.unobserve(entry.target);
+};
+const imageOptions = {
+  root: null,
+  threshold: 0,
+  rootMargin: "200px",
+};
+const imageObserver = new IntersectionObserver(lazyLoadImage, imageOptions);
+
+imageTarget.forEach(function (img) {
+  imageObserver.observe(img);
 });
