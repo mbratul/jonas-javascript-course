@@ -151,7 +151,7 @@ window.addEventListener("scroll", function () {
   }
 }); */
 ////////////////////////////
-//Sticky Navigation menu using Intersection Ovserver API
+//Intersection Ovserver API Overview
 /* const observerCallback = function (entries, observe) {
   entries.forEach(function (entry) {
     console.log(entry);
@@ -164,6 +164,7 @@ const observerOptions = {
 const observer = new IntersectionObserver(observerCallback, observerOptions);
 observer.observe(section1); */
 
+//Sticky Navigation menu using Intersection Ovserver API
 const header = document.querySelector(".header");
 const navHeight = nav.getBoundingClientRect().height;
 //console.log(navHeight);
@@ -184,3 +185,29 @@ const stickyoptions = {
 };
 const headerObserver = new IntersectionObserver(stickynav, stickyoptions);
 headerObserver.observe(header);
+
+////////////////////////////
+//Reveal Section
+const allSections = document.querySelectorAll(".section");
+
+const revealSection = function (entries, observer) {
+  const [entry] = entries;
+  //console.log(entry);
+
+  //Guard Clause
+  if (!entry.isIntersecting) return;
+
+  entry.target.classList.remove("section--hidden");
+  observer.unobserve(entry.target);
+};
+const sectionOptions = {
+  root: null,
+  threshold: 0.15,
+};
+const sectionOvserver = new IntersectionObserver(revealSection, sectionOptions);
+
+//extract nodelist
+allSections.forEach(function (section) {
+  sectionOvserver.observe(section);
+  section.classList.add("section--hidden");
+});

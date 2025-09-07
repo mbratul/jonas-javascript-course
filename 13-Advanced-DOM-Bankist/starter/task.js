@@ -7,8 +7,8 @@ console.log(document.head);
 console.log(document.body);
 
 //selecting elements
-const allSections = document.querySelectorAll(".section");
-console.log(allSections);
+const allSectionsList = document.querySelectorAll(".section");
+console.log(allSectionsList);
 
 const section1ID = document.getElementById("section--1");
 console.log(section1ID);
