@@ -129,12 +129,14 @@ slider.style.overflow = "visible"; */
 
   document.addEventListener("keydown", function (e) {
     //console.log(e);
-    if (e.key === "ArrowLeft") {
+    /* if (e.key === "ArrowLeft") {
       previousSlide();
     } else if (e.key === "ArrowRight") {
       nextSlide();
     } else {
       alert("use only left and right key");
-    }
+    } */
+    e.key === "ArrowLeft" && previousSlide();
+    e.key === "ArrowRight" && nextSlide();
   });
 }
