@@ -15,7 +15,7 @@ const ratul = new Person("ratul", 1985);
 const mamun = new Person("mamun", 1995);
 const halim = new Person("halim", 1975);
 console.log(ratul, mamun, halim);
-console.log(Person.calcAge(ratul));
+
 const jack = "jack";
 console.log(ratul instanceof Person);
 console.log(jack instanceof Person);
