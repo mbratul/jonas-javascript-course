@@ -74,32 +74,99 @@ console.dir(function x() {
   //Class Decleration
   class PersonCL {
     // Initialize properties here in constructor
-    constructor(firstName, birthYear) {
-      this.firstName = firstName;
+    constructor(fullName, birthYear) {
+      this.fullName = fullName;
       this.birthYear = birthYear;
     }
     // Define methods here just like regular function
     // Method will be added to their prototype property
     calcAge() {
-      console.log(`${this.firstName} current age is ${2025 - this.birthYear}`);
+      console.log(`${this.fullName} current age is ${2025 - this.birthYear}`);
     }
     greet() {
-      console.log(`hey ${this.firstName}`);
+      console.log(`hey ${this.fullName}`);
+    }
+    //getter method
+    get age() {
+      return 2025 - this.birthYear;
+    }
+    //set a property that already exist
+    set fullName(name) {
+      console.log(name);
+      if (name.includes(" ")) this._fullName = name;
+      //it's an convention to add underscore to a property name
+      else {
+        alert(`${name} is not a full name`);
+      }
+    }
+    get fullName() {
+      return this._fullName;
+    }
+    //static methods also called it instance methods
+    static hey() {
+      console.log("hey there 👏");
     }
   }
-  const ratul = new PersonCL("ratul", 1985); //it's called instance
-  console.log(ratul);
-  ratul.calcAge();
-  console.log(ratul.__proto__ === PersonCL.prototype); //to check the object protoype
+  const ratulNew = new PersonCL("muhtasim ratul", 1985); //it's called instance
+  console.log(ratulNew);
+  ratulNew.calcAge();
+  console.log(ratulNew.__proto__ === PersonCL.prototype); //to check the object protoype
 
   //add a prototype method
   // PersonCL.prototype.greet = function () {
   //   console.log(`hey ${this.firstName}`);
   // };
-  ratul.greet();
+  ratulNew.greet();
 
   //Rules:
   //1. Class are not hoisted. Even they are deceleration
   //2. Class are also first class citizen, just like function
   //3. The body of a class always executed in strict mood
+
+  //Setter and Getter Properties
+  /* 
+  Definition: In JavaScript, getter and setter are the special methods introduced in ECMAScript 5 (ES5 2009) that allow us to retrieve and modify the values directly without directly changing the object property. The getter uses the get keyword and the setter uses the set keyword to modify and retrieve the values.
+  url: https://www.geeksforgeeks.org/javascript/javascript-getters-and-setters/ 
+  */
+  console.log(`age of ${ratulNew.fullName} is ${ratulNew.age}`);
+  console.log(ratulNew);
+  const walter = new PersonCL("Walter White", 1976);
+  console.log(walter);
+  PersonCL.hey();
+}
+{
+  ///////////////////
+  //Static Method
+  /* Static methods are functions that are defined on a class but are not accessible through instances of the class. Instead, they are called directly on the class itself. These methods are useful for creating utility functions or shared logic that doesn’t depend on individual object instances.
+  url: https://www.geeksforgeeks.org/javascript/js-static-methods/ */
+  console.log("------Static Method------");
+  const h1 = Array.from(document.querySelectorAll("h1"));
+  console.log(h1);
+}
+{
+  ///////////////////
+  //Object.create
+  /*Definition:  JavaScript object.create() method is used to create a new object with the specified prototype object and properties. Object.create() method returns a new object with the specified prototype object and properties. 
+  url: https://www.geeksforgeeks.org/javascript/javascript-object-create-method/*/
+
+  const PersonObj = {
+    calcAge() {
+      console.log(2025 - this.birthYear);
+    },
+    init(firstName, birthYear) {
+      this.firstName = firstName;
+      this.birthYear = birthYear;
+    },
+  };
+  const steven = Object.create(PersonObj);
+  steven.fullName = "Steven Smith";
+  steven.birthYear = 1995;
+  steven.calcAge();
+  console.log(steven);
+  console.log(steven.__proto__);
+  console.log(steven.__proto__ === PersonObj);
+
+  const sara = Object.create(PersonObj);
+  sara.init("Sara", 1997);
+  sara.calcAge();
 }
