@@ -45,3 +45,18 @@ console.log(ratul.hasOwnProperty("species"));
 
 //prototype chain
 console.log(ratul.__proto__.__proto__); //parent object of Ratul. Object.prototype
+console.log(ratul.__proto__.__proto__.__proto__); //parent object of Object.prototype is null
+console.log(Person.prototype.constructor);
+console.dir(Person.prototype.constructor);
+
+const arr = [3, 5, 46, 3, 6, 9, 4, 6, 9, 7, 6, 5, 4];
+console.log(arr.__proto__);
+console.log(arr.__proto__ === Array.prototype);
+console.log(arr.__proto__.__proto__);
+// Do not create a method in prototype chain. it's not a good practice.
+// Create your own constructor and then creat your method just like person constructor
+const h1 = document.querySelector("h1");
+console.dir(h1);
+console.dir(function x() {
+  return x + 2;
+});
