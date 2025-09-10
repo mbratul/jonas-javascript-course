@@ -14,26 +14,56 @@ DATA CAR 2: 'Mercedes' going at 95 km/h
 GOOD LUCK 😀
 */
 //1. Use a constructor function to implement a Car. A car has a make and a speed property. The speed property is the current speed of the car in km/h;
-function Car(make, spped) {
-  this.make = make;
-  this.spped = spped;
+{
+  console.log("----implementing Object Prototype----");
+  function Car(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+  Car.prototype.accelerate = function () {
+    this.speed += 10;
+    console.log(`${this.make} is going at ${this.speed}km/h`);
+  };
+  Car.prototype.brake = function () {
+    this.speed -= 5;
+    console.log(`${this.make} is brake at ${this.speed}km/h`);
+  };
+
+  const bmw = new Car("BMW", 120);
+  const mercedes = new Car("Mercedes", 95);
+
+  console.log(bmw, mercedes);
+  bmw.accelerate();
+  bmw.accelerate();
+  bmw.brake();
+  bmw.accelerate();
+  bmw.accelerate();
+  bmw.brake();
 }
-Car.prototype.accelerate = function () {
-  this.spped += 10;
-  console.log(`${this.make} is going at ${this.spped}km/h`);
-};
-Car.prototype.brake = function () {
-  this.spped -= 5;
-  console.log(`${this.make} is brake at ${this.spped}km/h`);
-};
-
-const bmw = new Car("BMW", 120);
-const mercedes = new Car("Mercedes", 95);
-
-console.log(bmw, mercedes);
-bmw.accelerate();
-bmw.accelerate();
-bmw.brake();
-bmw.accelerate();
-bmw.accelerate();
-bmw.brake();
+{
+  //Implement the code block using Class
+  console.log("----implementing Class functionality----");
+  class CarCL {
+    constructor(make, speed) {
+      this.make = make;
+      this.speed = speed;
+    }
+    accelerate() {
+      this.speed += 10;
+      console.log(`${this.make} is going at ${this.speed}km/h`);
+    }
+    brake() {
+      this.speed -= 5;
+      console.log(`${this.make} is brake at ${this.speed}km/h`);
+    }
+  }
+  const bmw = new CarCL("BMW", 120);
+  const mercedes = new CarCL("Mercedes", 95);
+  console.log(bmw, mercedes);
+  mercedes.accelerate();
+  mercedes.accelerate();
+  mercedes.brake();
+  mercedes.accelerate();
+  mercedes.accelerate();
+  mercedes.brake();
+}

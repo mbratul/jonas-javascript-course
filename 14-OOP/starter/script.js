@@ -60,3 +60,46 @@ console.dir(h1);
 console.dir(function x() {
   return x + 2;
 });
+{
+  ///////////////////
+  //Clas in JS
+  //Class is just a speacial type of function in js
+  /* Class Definition: JavaScript classes (introduced in ES6) provide a structured way to create objects with shared properties and methods. They support inheritance, encapsulation, and modularity, making it easier to write object-oriented code. 
+  URL: https://www.geeksforgeeks.org/javascript/javascript-classes/
+  */
+  console.log("----Clas in JS----");
+  //Class Expression
+  //const PersonCL = class {};
+
+  //Class Decleration
+  class PersonCL {
+    // Initialize properties here in constructor
+    constructor(firstName, birthYear) {
+      this.firstName = firstName;
+      this.birthYear = birthYear;
+    }
+    // Define methods here just like regular function
+    // Method will be added to their prototype property
+    calcAge() {
+      console.log(`${this.firstName} current age is ${2025 - this.birthYear}`);
+    }
+    greet() {
+      console.log(`hey ${this.firstName}`);
+    }
+  }
+  const ratul = new PersonCL("ratul", 1985); //it's called instance
+  console.log(ratul);
+  ratul.calcAge();
+  console.log(ratul.__proto__ === PersonCL.prototype); //to check the object protoype
+
+  //add a prototype method
+  // PersonCL.prototype.greet = function () {
+  //   console.log(`hey ${this.firstName}`);
+  // };
+  ratul.greet();
+
+  //Rules:
+  //1. Class are not hoisted. Even they are deceleration
+  //2. Class are also first class citizen, just like function
+  //3. The body of a class always executed in strict mood
+}
