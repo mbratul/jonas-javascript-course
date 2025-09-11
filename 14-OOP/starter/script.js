@@ -170,3 +170,158 @@ console.dir(function x() {
   sara.init("Sara", 1997);
   sara.calcAge();
 }
+{
+  ///////////////////
+  //Inheritance between "Classes" : Constructor Functions
+
+  const Person = function (firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  };
+  Person.prototype.calcAge = function () {
+    console.log(2025 - this.birthYear);
+  };
+
+  const Student = function (firstName, birthYear, course) {
+    Person.call(this, firstName, birthYear);
+
+    this.course = course;
+  };
+  //Linking Prototypes
+  Student.prototype = Object.create(Person.prototype);
+  Student.prototype.introduce = function () {
+    console.log(`My name is ${this.firstName}, and i study ${this.course}`);
+  };
+  const mike = new Student("Mike", 2014, "Coumputer Science");
+  console.log(mike);
+  mike.introduce();
+  mike.calcAge();
+  console.log(mike.__proto__);
+  console.log(mike.__proto__.__proto__);
+  console.log(mike instanceof Student);
+  console.log(mike instanceof Person);
+}
+{
+  ///////////////////
+  //Inheritance between "Classes" : ES6 Classes
+  class PersonCL {
+    // Initialize properties here in constructor
+    constructor(fullName, birthYear) {
+      this.fullName = fullName;
+      this.birthYear = birthYear;
+    }
+    // Define methods here just like regular function
+    // Method will be added to their prototype property
+    calcAge() {
+      console.log(`${this.fullName} current age is ${2025 - this.birthYear}`);
+    }
+    greet() {
+      console.log(`hey ${this.fullName}`);
+    }
+    //getter method
+    get age() {
+      return 2025 - this.birthYear;
+    }
+    //set a property that already exist
+    set fullName(name) {
+      console.log(name);
+      if (name.includes(" ")) this._fullName = name;
+      //it's an convention to add underscore to a property name
+      else {
+        alert(`${name} is not a full name`);
+      }
+    }
+    get fullName() {
+      return this._fullName;
+    }
+    //static methods also called it instance methods
+    static hey() {
+      console.log("hey there 👏");
+    }
+  }
+
+  class StudentCL extends PersonCL {
+    constructor(fullName, birthYear, course) {
+      //Always needs to happen first
+      super(fullName, birthYear);
+      this.course = course;
+    }
+    introduce() {
+      console.log(`My name is ${this.fullName}, and i study ${this.course}`);
+    }
+    calcAge() {
+      console.log(
+        `I am ${this.fullName}  my current age is ${
+          2025 - this.birthYear
+        } but as a student i feel more like ${
+          2025 - this.birthYear + 10
+        } year old`
+      );
+    }
+  }
+  const martha = new StudentCL("Martha Jones", 1994, "Computer Science");
+  console.log(martha);
+  martha.introduce();
+  martha.calcAge();
+}
+{
+  ///////////////////
+  //Inheritance between "Classes" : Object.create()
+  const PersonObj = {
+    calcAge() {
+      console.log(2025 - this.birthYear);
+    },
+    init(firstName, birthYear) {
+      this.firstName = firstName;
+      this.birthYear = birthYear;
+    },
+  };
+  const steven = Object.create(PersonObj);
+
+  const StudentObj = Object.create(PersonObj);
+
+  StudentObj.init = function (firstName, birthYear, course) {
+    PersonObj.init.call = (this, firstName, birthYear);
+    this.course = course;
+  };
+  StudentObj.introduce = function () {
+    console.log(`My name is ${this.firstName}, and i study ${this.course}`);
+  };
+  const jay = Object.create(StudentObj);
+  jay.init("Jay", 1976, "Software Engineer");
+  jay.introduce();
+  jay.calcAge();
+}
+{
+  class Account {
+    constructor(owner, currency, pin) {
+      this.owner = owner;
+      this.currency = currency;
+      this.pin = pin;
+      this.movements = [];
+      this.locals = navigator.language;
+      console.log(`Thanks for opening an account ${this.owner}`);
+    }
+    //Public Interface of Object
+    deposit(val) {
+      this.movements.push(val);
+    }
+    withdrawl(val) {
+      this.deposit(-val);
+    }
+    approvedLoan(val) {
+      return true;
+    }
+    requestLoan(val) {
+      if (this.approvedLoan(val)) {
+        this.deposit(val);
+        console.log(`Loan Approved`);
+      }
+    }
+  }
+  const acc1 = new Account("Jonas", "EUR", 1111);
+  acc1.deposit(250);
+  acc1.withdrawl(150);
+  acc1.requestLoan(1000);
+  console.log(acc1);
+}
