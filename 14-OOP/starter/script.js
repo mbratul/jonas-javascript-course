@@ -293,30 +293,48 @@ console.dir(function x() {
   jay.calcAge();
 }
 {
+  ///////////////////
+  //Encapsulation: Private Class, Field, and Methods
+  // 1. Public Fields
+  // 2. Private Fields
+  // 3. Public Methods
+  // 4. Private Methods
+  // Statice version of these 4
   class Account {
+    local = navigator.language;
+    bank = "Bankist";
+    #movements = [];
+    #pin;
     constructor(owner, currency, pin) {
       this.owner = owner;
       this.currency = currency;
-      this.pin = pin;
-      this.movements = [];
-      this.locals = navigator.language;
+      this.#pin = pin;
+      //this.movements = [];
+      //this.locals = navigator.language;
       console.log(`Thanks for opening an account ${this.owner}`);
     }
-    //Public Interface of Object
+    //Public Interface of Object (API)
+    getMovements() {
+      return this.#movements;
+    }
     deposit(val) {
-      this.movements.push(val);
+      this.#movements.push(val);
+      return this;
     }
     withdrawl(val) {
       this.deposit(-val);
+      return this;
     }
-    approvedLoan(val) {
+    #approvedLoan(val) {
+      //Fake Method
       return true;
     }
     requestLoan(val) {
-      if (this.approvedLoan(val)) {
+      if (this.#approvedLoan(val)) {
         this.deposit(val);
         console.log(`Loan Approved`);
       }
+      return this;
     }
   }
   const acc1 = new Account("Jonas", "EUR", 1111);
@@ -324,4 +342,11 @@ console.dir(function x() {
   acc1.withdrawl(150);
   acc1.requestLoan(1000);
   console.log(acc1);
+  const transaction = acc1
+    .deposit(500)
+    .withdrawl(100)
+    .withdrawl(200)
+    .deposit(400)
+    .requestLoan(200);
+  console.log(transaction);
 }
