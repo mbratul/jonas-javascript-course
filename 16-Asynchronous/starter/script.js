@@ -57,7 +57,7 @@ const countriesContainer = document.querySelector(".countries");
       countriesContainer.style.opacity = 1;
     });
   };
-  getCountryData("bangladesh");
+  //getCountryData("bangladesh");
   //getCountryData("portugal");
   //getCountryData("united states of america");
 }
@@ -124,7 +124,7 @@ const countriesContainer = document.querySelector(".countries");
     });
   };
   //getCountryDataAndNeighbour("portugal");
-  getCountryDataAndNeighbour("united states of america");
+  //getCountryDataAndNeighbour("united states of america");
 
   //call back hell example
   /* setTimeout(() => {
@@ -204,4 +204,26 @@ const countriesContainer = document.querySelector(".countries");
       .then((data) => renderCountry(data[0]));
   };
   getCountryDataArrow("pakistan");
+
+  ///////////////////////////////////////
+  //-----promis chaining example-----
+  console.log("-----promis chaining example-----");
+  const getCountryDataChain = function (country) {
+    //country 1
+    fetch(`https://restcountries.com/v3.1/name/${country}`)
+      .then((response) => response.json())
+      .then((data) => {
+        renderCountry(data[0]);
+        console.log(data);
+        const neighbour = data[0].borders[0];
+        console.log(neighbour);
+        if (!neighbour) return;
+        //country 2
+        return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
+      });
+    //need to resolve the chain issue
+    //.then((response) => response.json())
+    //.then((data) => renderCountry(data, "neighbour"));
+  };
+  getCountryDataChain("nepal");
 }
