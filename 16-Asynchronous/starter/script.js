@@ -258,9 +258,9 @@ const countriesContainer = document.querySelector(".countries");
         countriesContainer.style.opacity = 1;
       });
   };
-  /* btn.addEventListener("click", function () {
+  btn.addEventListener("click", function () {
     getCountryDataChain("nepal");
-  }); */
+  });
   //getCountryDataChain("abdsf");
   console.log("-----use custom error message for -----");
   const getJSON = function (url, errorMsg = "Something Went Wrong") {
@@ -304,4 +304,20 @@ const countriesContainer = document.querySelector(".countries");
       });
   };
   //getCountryWithCustomError("australia");
+}
+{
+  ///////////////////////////////////////
+  //-----Event Loop-----
+  console.log("Test Start");
+  setTimeout(() => console.log("timer end at 0 second"), 0);
+  Promise.resolve("resolved promise 1").then((response) =>
+    console.log(response)
+  );
+  Promise.resolve("resolved promise 2").then((response) => {
+    for (let index = 0; index < 10; index++) {
+      console.log(index);
+    }
+    console.log(response);
+  });
+  console.log("Test End");
 }
