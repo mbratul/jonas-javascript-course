@@ -179,8 +179,14 @@ const countriesContainer = document.querySelector(".countries");
                 </article>
                 `;
     countriesContainer.insertAdjacentHTML("beforeend", html);
-    countriesContainer.style.opacity = 1;
+    //countriesContainer.style.opacity = 1;
   };
+
+  const renderError = function (msg) {
+    countriesContainer.insertAdjacentText("beforeend", msg);
+    // countriesContainer.style.opacity = 1;
+  };
+
   const request = fetch("https://restcountries.com/v3.1/name/bangladesh");
   console.log(request);
 
@@ -195,7 +201,7 @@ const countriesContainer = document.querySelector(".countries");
         renderCountry(data[0]);
       });
   };
-  getCountryData("india");
+  //getCountryData("india");
 
   //simplified arrow function version
   const getCountryDataArrow = function (country) {
@@ -203,27 +209,99 @@ const countriesContainer = document.querySelector(".countries");
       .then((response) => response.json())
       .then((data) => renderCountry(data[0]));
   };
-  getCountryDataArrow("pakistan");
+  //getCountryDataArrow("pakistan");
 
   ///////////////////////////////////////
   //-----promis chaining example-----
   console.log("-----promis chaining example-----");
+
   const getCountryDataChain = function (country) {
     //country 1
-    fetch(`https://restcountries.com/v3.1/name/${country}`)
-      .then((response) => response.json())
+    fetch(`https://restcountries.com/v3.1/name/${country}?fullText=true`)
+      .then(
+        (response) => {
+          //console.log(response);
+          if (!response.ok) {
+            throw new Error(`Country Not Found ${response.status}`);
+          }
+          return response.json();
+        }
+        //,(err) => alert(err)
+      )
       .then((data) => {
         renderCountry(data[0]);
         console.log(data);
         const neighbour = data[0].borders[0];
-        console.log(neighbour);
+        //console.log(neighbour);
         if (!neighbour) return;
         //country 2
-        return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
+        console.log(neighbour);
+        return fetch(
+          `https://restcountries.com/v3.1/alpha/${neighbour}?fullText=true`
+        );
+      })
+      //need to resolve the chain issue
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Country Not Found ${response.status}`);
+        }
+        return response.json();
+        //,(err) => alert(err)
+      })
+      .then((data) => renderCountry(data[0], "neighbour"))
+      //error handling in promise
+      .catch((err) => {
+        console.log(err);
+        renderError(`Something Went Wrong ${err.message}`);
+      })
+      .finally(() => {
+        countriesContainer.style.opacity = 1;
       });
-    //need to resolve the chain issue
-    //.then((response) => response.json())
-    //.then((data) => renderCountry(data, "neighbour"));
   };
-  getCountryDataChain("nepal");
+  /* btn.addEventListener("click", function () {
+    getCountryDataChain("nepal");
+  }); */
+  //getCountryDataChain("abdsf");
+  console.log("-----use custom error message for -----");
+  const getJSON = function (url, errorMsg = "Something Went Wrong") {
+    return fetch(url).then((response) => {
+      if (!response.ok) {
+        throw new Error(`${errorMsg} ${response.status}`);
+      }
+      return response.json();
+    });
+  };
+
+  const getCountryWithCustomError = function (country) {
+    //country 1
+    getJSON(
+      `https://restcountries.com/v3.1/name/${country}`,
+      `Country Not Found`
+    )
+      .then((data) => {
+        renderCountry(data[0]);
+        console.log(data);
+        const neighbour = data[0].borders[0];
+
+        //console.log(neighbour);
+        if (!neighbour) throw new Error(`No Neighbour Found`);
+        //country 2
+        console.log(neighbour);
+        return getJSON(
+          `https://restcountries.com/v3.1/alpha/${neighbour}`,
+          `Country Not Found`
+        );
+      })
+
+      .then((data) => renderCountry(data[0], "neighbour"))
+      //error handling in promise
+      .catch((err) => {
+        console.log(err);
+        renderError(`Something Went Wrong ${err.message}`);
+      })
+      .finally(() => {
+        countriesContainer.style.opacity = 1;
+      });
+  };
+  //getCountryWithCustomError("australia");
 }
