@@ -321,3 +321,52 @@ const countriesContainer = document.querySelector(".countries");
   });
   console.log("Test End");
 }
+{
+  ///////////////////////////////////////
+  //-----Building a Simple Promise-----
+  console.log("-----Building a Simple Promise-----");
+
+  const lotteryPromise = new Promise(function (resolve, reject) {
+    console.log("Lottery draw is happening now");
+    setTimeout(function () {
+      if (Math.random() >= 0.5) {
+        resolve("You win the lottery");
+      } else {
+        reject(new Error("you loose the lottery"));
+      }
+    }, 2000);
+  });
+  lotteryPromise
+    .then((res) => console.log(res))
+    .catch((err) => console.error(err));
+
+  //Promisifying setTimeout
+  const wait = function (seconds) {
+    return new Promise(function (resolve) {
+      setTimeout(resolve, seconds * 2000);
+    });
+  };
+  wait(1)
+    .then(() => {
+      console.log("1 second passed ");
+      return wait(1);
+    })
+    .then(() => {
+      console.log("2 second passed ");
+      return wait(1);
+    })
+    .then(() => {
+      console.log("3 second passed ");
+      return wait(1);
+    })
+    .then(() => {
+      console.log("4 second passed ");
+      return wait(1);
+    })
+    .then(() => {
+      console.log("5 second passed ");
+    });
+
+  Promise.resolve("abc").then((x) => console.log(x));
+  Promise.reject(new Error("Problem!")).catch((x) => console.error(x));
+}
