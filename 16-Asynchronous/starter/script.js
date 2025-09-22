@@ -1,6 +1,7 @@
 "use strict";
 
 const btn = document.querySelector(".btn-country");
+const btnCurrent = document.querySelector(".btn-current-location");
 const countriesContainer = document.querySelector(".countries");
 
 // NEW COUNTRIES API URL (use instead of the URL shown in videos):
@@ -369,4 +370,50 @@ const countriesContainer = document.querySelector(".countries");
 
   Promise.resolve("abc").then((x) => console.log(x));
   Promise.reject(new Error("Problem!")).catch((x) => console.error(x));
+}
+{
+  ///////////////////////////////////////
+  //-----Promise Get Geolocation-----
+  console.log("-----Promise Get Geolocation-----");
+
+  const getPosition = function () {
+    return new Promise(function (resolve, reject) {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+  };
+  getPosition().then((pos) => console.log(pos));
+
+  const currentLocation = function () {
+    getPosition()
+      .then((pos) => {
+        const { latitude: lat, longitude: lng } = pos.coords;
+        return fetch(
+          `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`
+        );
+      })
+      .then((response) => {
+        if (!response.ok)
+          throw new Error(`Problem with geocoding ${response.status}`);
+        return response.json();
+      })
+      .then((data) => {
+        //console.log(data);
+        //console.log(`You are in ${data.city}, ${data.countryName}`);
+        return fetch(`https://restcountries.com/v3.1/name/${data.countryName}`);
+      })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Country Not Found ${response.status}`);
+        }
+        return response.json();
+        //,(err) => alert(err)
+      })
+      .then((data) => renderCountry(data[0]))
+      .catch((err) => console.error(`${err.message}`))
+      .finally(() => {
+        countriesContainer.style.opacity = 1;
+      });
+  };
+
+  btnCurrent.addEventListener("click", currentLocation);
 }
