@@ -368,8 +368,8 @@ const countriesContainer = document.querySelector(".countries");
       console.log("5 second passed ");
     });
 
-  Promise.resolve("abc").then((x) => console.log(x));
-  Promise.reject(new Error("Problem!")).catch((x) => console.error(x));
+  //Promise.resolve("abc").then((x) => console.log(x));
+  //Promise.reject(new Error("Problem!")).catch((x) => console.error(x));
 }
 {
   ///////////////////////////////////////
