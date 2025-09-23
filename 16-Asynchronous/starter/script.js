@@ -16,7 +16,35 @@ const countriesContainer = document.querySelector(".countries");
 //   p.textContent = "my name is ratul";
 // }, 5000);
 // p.style.color = "red";
+const renderCountry = function (data, className = "") {
+  const html = `
+      <article class="country ${className}">
+      <img class="country__img" src="${data.flags.png}" alt="${
+    data.flags.alt
+  }" />
+          <div class="country__data">
+          <h3 class="country__name">${data.name.common}</h3>
+          <h4 class="country__region">${data.region}</h4>
+          <p class="country__row"><span>👫</span>${(
+            Number(data.population) / 10000000
+          ).toFixed(1)} people</p>
+          <p class="country__row"><span>🗣️</span>${Object.values(
+            data.languages
+          )}</p>
+          <p class="country__row"><span>💰</span>${
+            Object.values(data.currencies)[0].name
+          }</p>
+              </div>
+              </article>
+              `;
+  countriesContainer.insertAdjacentHTML("beforeend", html);
+  countriesContainer.style.opacity = 1;
+};
 
+const renderError = function (msg) {
+  countriesContainer.insertAdjacentText("beforeend", msg);
+  // countriesContainer.style.opacity = 1;
+};
 {
   ///////////////////////////////////////
   //XMLHttprequest call
@@ -158,35 +186,6 @@ const countriesContainer = document.querySelector(".countries");
   //   );
   //   request.send();
   console.log("----fetch api call---");
-  const renderCountry = function (data, className = "") {
-    const html = `
-        <article class="country ${className}">
-        <img class="country__img" src="${data.flags.png}" alt="${
-      data.flags.alt
-    }" />
-            <div class="country__data">
-            <h3 class="country__name">${data.name.common}</h3>
-            <h4 class="country__region">${data.region}</h4>
-            <p class="country__row"><span>👫</span>${(
-              Number(data.population) / 10000000
-            ).toFixed(1)} people</p>
-            <p class="country__row"><span>🗣️</span>${Object.values(
-              data.languages
-            )}</p>
-            <p class="country__row"><span>💰</span>${
-              Object.values(data.currencies)[0].name
-            }</p>
-                </div>
-                </article>
-                `;
-    countriesContainer.insertAdjacentHTML("beforeend", html);
-    //countriesContainer.style.opacity = 1;
-  };
-
-  const renderError = function (msg) {
-    countriesContainer.insertAdjacentText("beforeend", msg);
-    // countriesContainer.style.opacity = 1;
-  };
 
   const request = fetch("https://restcountries.com/v3.1/name/bangladesh");
   console.log(request);
@@ -416,4 +415,48 @@ const countriesContainer = document.querySelector(".countries");
   };
 
   btnCurrent.addEventListener("click", currentLocation);
+}
+{
+  ///////////////////////////////////////
+  //-----Consuming Promises with async/await-----
+  console.log("-----Consuming Promises with async/await-----");
+
+  const getPosition = function () {
+    return new Promise(function (resolve, reject) {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+  };
+
+  const whereAmIasync = async function () {
+    try {
+      const position = await getPosition();
+      //Geolocation
+      const { latitude: lat, longitude: lng } = position.coords;
+      //Geo Reverse Coding
+      const geoResponse = await fetch(
+        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`
+      );
+      if (!geoResponse.ok) {
+        throw new Error("Problem getting location data");
+      }
+      const geoData = await geoResponse.json();
+      console.log(geoData);
+      //it is exactly same work done by async/await in a clean way
+      //fetch(`https://restcountries.com/v3.1/name/${country}`).then((response) => console.log(response))
+      const response = await fetch(
+        `https://restcountries.com/v3.1/name/${geoData.countryCode}`
+      );
+      if (!response.ok) {
+        throw new Error("Problem getting Country");
+      }
+      const data = await response.json();
+      renderCountry(data[0]);
+      // console.log(response);
+      //console.log(data);
+    } catch (err) {
+      renderError(`Something went wrong${err.message}`);
+    }
+  };
+  whereAmIasync();
+  console.log("first");
 }

@@ -1,5 +1,5 @@
 "use strict";
-const renderCountry = function (data, className = "") {
+/* const renderCountry = function (data, className = "") {
   const html = `
           <article class="country ${className}">
           <img class="country__img" src="${data.flags.png}" alt="${
@@ -22,12 +22,12 @@ const renderCountry = function (data, className = "") {
                   `;
   countriesContainer.insertAdjacentHTML("beforeend", html);
   //countriesContainer.style.opacity = 1;
-};
+}; */
 
-const renderError = function (msg) {
+/* const renderError = function (msg) {
   countriesContainer.insertAdjacentText("beforeend", msg);
   // countriesContainer.style.opacity = 1;
-};
+}; */
 ///////////////////////////////////////
 // Coding Challenge #1
 
