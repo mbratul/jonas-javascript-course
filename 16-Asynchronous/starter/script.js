@@ -453,10 +453,29 @@ const renderError = function (msg) {
       renderCountry(data[0]);
       // console.log(response);
       //console.log(data);
+      return `you are here ${geoData.city}, ${geoData.countryCode}`;
     } catch (err) {
       renderError(`Something went wrong${err.message}`);
+      //Reject promise returned from async function
+      throw err;
     }
   };
-  whereAmIasync();
-  console.log("first");
+  console.log("1: will get location");
+  // const city = whereAmIasync();
+  // console.log(city);
+  // whereAmIasync()
+  //   .then((city) => console.log(`2: ${city}`))
+  //   .catch((err) => console.error(`2: ${err.message}`))
+  //   .finally(() => console.log("3: finished getting location"));
+
+  //async iife function
+  (async function () {
+    try {
+      const city = await whereAmIasync();
+      console.log(`2: ${city}`);
+    } catch (err) {
+      console.error(`2: ${err.message}`);
+    }
+    console.log("3: finished getting location");
+  })();
 }
