@@ -1,3 +1,4 @@
+"use strict";
 const budget = [
   { value: 250, description: "Sold old TV 📺", user: "jonas" },
   { value: -45, description: "Groceries 🥑", user: "jonas" },
@@ -9,10 +10,10 @@ const budget = [
   { value: -1800, description: "New Laptop 💻", user: "jonas" },
 ];
 
-const spendinglimits = {
+const spendinglimits = Object.freeze({
   jonas: 1500,
   matilda: 100,
-};
+});
 const getLimit = (user) => (spendinglimits[user] ? spendinglimits[user] : 0);
 
 const addExpenses = function (value, description, user) {
@@ -67,3 +68,20 @@ const logBigExpenses = function (bigLimit) {
 //console.log(budget);
 console.log(budget);
 logBigExpenses(100);
+{
+  //Imaparative Way
+  console.log("Imaparative Way");
+  const arr = [2, 4, 25, 6, 4, 9, 45];
+  const double = [];
+  for (let i = 0; i < arr.length; i++) {
+    double[i] = arr[i] * 2;
+  }
+  console.log(double);
+}
+{
+  //Declearative Way
+  console.log("Declearative Way");
+  const arr = [2, 4, 25, 6, 4, 9, 45];
+  const double = arr.map((n) => n * 2);
+  console.log(double);
+}
