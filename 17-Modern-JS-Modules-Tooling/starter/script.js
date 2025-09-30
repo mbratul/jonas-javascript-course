@@ -33,11 +33,11 @@ if (score >= 90) {
 }
 
 //top level await
-const response = await fetch(
+/* const response = await fetch(
   "https://jsonplaceholder.typicode.com/posts?_limit=5"
 );
 const data = await response.json();
-console.log(data);
+console.log(data); */
 
 // get last post
 
