@@ -32,9 +32,12 @@ const apikey = "3b9fff7a-46b6-4af2-b1d7-f8c16b4f96b5";
 async function showRecipe() {
   try {
     renderSpinner(recipeContainer);
+    const id = window.location.hash.slice(1);
+    if (!id) return;
     // loading recipe
     const response = await fetch(
-      `https://forkify-api.jonas.io/api/v2/recipes/5ed6604591c37cdc054bc886`
+      `https://forkify-api.jonas.io/api/v2/recipes/${id}`
+      // `https://forkify-api.jonas.io/api/v2/recipes/5ed6604591c37cdc054bc886`
       // `https://forkify-api.jonas.io/api/v2/recipes/664c8f193e7aa067e94e86b9`
     );
     const resData = await response.json();
@@ -159,4 +162,8 @@ async function showRecipe() {
     alert(error);
   }
 }
-showRecipe();
+
+["hashchange", "load"].forEach((ev) => window.addEventListener(ev, showRecipe));
+// showRecipe();
+// window.addEventListener("hashchange", showRecipe);
+// window.addEventListener("load", showRecipe);
