@@ -1,19 +1,13 @@
 import { async } from "regenerator-runtime";
+import { API_URL } from "./config.js";
+import { getJSON } from "./helpers.js";
 export const state = {
   recipe: {},
 };
 
 export async function loadRecipe(id) {
   try {
-    const response = await fetch(
-      `https://forkify-api.jonas.io/api/v2/recipes/${id}`
-      // `https://forkify-api.jonas.io/api/v2/recipes/5ed6604591c37cdc054bc886`
-      // `https://forkify-api.jonas.io/api/v2/recipes/664c8f193e7aa067e94e86b9`
-    );
-    const resData = await response.json();
-    if (!response.ok) {
-      throw new Error(`${resData.message}, ${response.status}`);
-    }
+    const resData = await getJSON(`${API_URL}/${id}`);
     const { recipe } = resData.data;
     state.recipe = {
       id: recipe.id,
@@ -27,6 +21,7 @@ export async function loadRecipe(id) {
     };
     console.log(state.recipe);
   } catch (error) {
-    alert(error);
+    //temporary erro handling
+    console.error(`${error} 🔥🔥🔥🔥`);
   }
 }
