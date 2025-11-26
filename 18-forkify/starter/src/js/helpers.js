@@ -9,8 +9,8 @@ const timeout = function (s) {
 
 export async function getJSON(url) {
   try {
-    const response = await Promise.race([fetch(url), timeout(TIMEOUT_SEC)]);
     // const response = await fetch(url);
+    const response = await Promise.race([fetch(url), timeout(TIMEOUT_SEC)]);
     // `https://forkify-api.jonas.io/api/v2/recipes/5ed6604591c37cdc054bc886`
     // `https://forkify-api.jonas.io/api/v2/recipes/664c8f193e7aa067e94e86b9`
     const resData = await response.json();
